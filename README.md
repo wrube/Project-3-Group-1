@@ -4,6 +4,8 @@
 UN Data
 [Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
 
+-- Definitions for data
+https://www.unhcr.org/refugee-statistics/methodology/data-content/
 Need a polygon file for country borders
 
 ## Proposal
