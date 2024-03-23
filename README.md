@@ -26,11 +26,10 @@ Country of origin -> html
 ## Ethical considerations made in the project
 Ethical considerations on:
 - Data gathering from UN
-  -   
 - Consumer of information
 
 
-Checklist for Ethically Using Data
+### Checklist for Ethically Using Data
 Follow this checklist when collecting and analysing data:
 1. Review your dataset for any personally identifiable information (PII). If it contains PII, remove it
 or otherwise anonymise your dataset, and control who is able to access the data. Be aware that it's
@@ -47,6 +46,12 @@ dataset representative of the full population? Are they from different socioecon
 backgrounds? Are there different cultures represented? Make sure that you consider what types of
 people may have been excluded from your dataset.
 
+
+### Data protection
+
+Before publishing any statistics on the refugee statistics website, UNHCR applies safeguards to protect confidentiality. Small numbers less than five are rounded to the nearest multiple of five. Additionally data relating to asylum decisions is rounded between five and ten.
+
+Data between tables remains additive therefore the totals should be considered approximations.
 
 References for the data source(s)
 
