@@ -1,12 +1,12 @@
 # Project-3-Group-1
 
 ## Source
-UN Data
-[Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
+- UN [Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
 
--- Definitions for data
+  - Definitions for data
 https://www.unhcr.org/refugee-statistics/methodology/data-content/
-Need a polygon file for country borders
+
+- Country borders with ISO names from [https://github.com/datasets/geo-countries](https://github.com/datasets/geo-countries) which is a GeoJSON converted dataset sourced from [Natural Earth](https://www.naturalearthdata.com/).
 
 ## Proposal
 
@@ -34,7 +34,7 @@ Here we use a local Mongo No-SQL database.
 2. Import the countries GeoJSON to the same database. To do this successfully, install **jq** and use the following terminal commands:
 
    `jq --compact-output ".features" countries.geojson > countries_compact.geojson`, then
-   
+
    `mongoimport --type json -d project3 -c countries countries_compact.geojson`
 
 ### Allow Javascript to connect to MongoDB
