@@ -24,10 +24,16 @@ A website to allow users to interactively understand and analyse:
 
 
 ### Loading to Mongo Database
-1. Import the asylum-decision JSON dataset to local Mongo database called **project3**:
-   `mongoimport --type json -d project3 -c asylum_decisions --jsonArray data/asylum_decisions_2008-2023.json`
-2. Import the countries GeoJSON to the same database:
-   `mongoimport --type json -d project3 -c countries data/countries.geojson`
+Here we use a local Mongo No-SQL database.
+
+1. Import the asylum-decision JSON dataset to local Mongo database called **project3** using the terminal with:
+   
+   `mongoimport --type json -d project3 -c asylum_decisions --jsonArray asylum_decisions_2008-2023.json`
+
+2. Import the countries GeoJSON to the same database. To do this successfully, install **jq** and use the following terminal commands:
+
+   `jq --compact-output ".features" countries.geojson > countries_compact.geojson`, then
+   `mongoimport --type json -d project3 -c countries countries_compact.geojson`
 
 html product with a map and a couple of graphs
 
