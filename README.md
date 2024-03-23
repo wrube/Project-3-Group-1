@@ -22,8 +22,9 @@ A website to allow users to interactively understand and analyse:
 
 ### Generate the datasets
 
+Use the file [retrieve_view_data.ipynb](retrieve_view_data.ipynb) to download your own copy.
 
-### Loading to Mongo Database
+### Load JSON datasets to Mongo Database
 Here we use a local Mongo No-SQL database.
 
 1. Import the asylum-decision JSON dataset to local Mongo database called **project3** using the terminal with:
@@ -33,7 +34,12 @@ Here we use a local Mongo No-SQL database.
 2. Import the countries GeoJSON to the same database. To do this successfully, install **jq** and use the following terminal commands:
 
    `jq --compact-output ".features" countries.geojson > countries_compact.geojson`, then
+   
    `mongoimport --type json -d project3 -c countries countries_compact.geojson`
+
+### Allow Javascript to connect to MongoDB
+
+To allow MongoDB to connect with Javascript, follow the tutorial at [Connect to a MongoDB Database Using Node.js](https://www.mongodb.com/developer/languages/javascript/node-connect-mongodb/).
 
 html product with a map and a couple of graphs
 
