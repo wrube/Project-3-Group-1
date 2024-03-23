@@ -20,6 +20,15 @@ A website to allow users to interactively understand and analyse:
 
 ## Instructions on how to use and interact with the project
 
+### Generate the datasets
+
+
+### Loading to Mongo Database
+1. Import the asylum-decision JSON dataset to local Mongo database called **project3**:
+   `mongoimport --type json -d project3 -c asylum_decisions --jsonArray data/asylum_decisions_2008-2023.json`
+2. Import the countries GeoJSON to the same database:
+   `mongoimport --type json -d project3 -c countries data/countries.geojson`
+
 html product with a map and a couple of graphs
 
 Country of asylum -> dropdown
