@@ -46,28 +46,29 @@ html product with a map and a couple of graphs
 Country of asylum -> dropdown
 Country of origin -> html
 
-## Ethical considerations made in the project
-Ethical considerations on:
-- Data gathering from UN
-- Consumer of information
+## Legal considerations made in this project (check if powerpoint would suffice)
+The source of the data, UNHCR, has outlined that this dataset is licensed under a Creative Commons 4.0. To comply with UNHCR's terms of use, the following has been applied either statically or continually:
+- When presenting information, a link to the terms of use shall be present: <https://www.unhcr.org/terms-use-datasets>
+- Similarly, accreditation of the original datasource will be shared under the following title: 'UNHCR Refugee Population Statistics Database'
+- We will not imply that the UNHCR has approved or endorsed this project in any manner, nor will their logo be shown or tampered with
+- There is no mention of the data being restricted by 3rd party contributors for this particular dataset
+- Consent is given for API to be used on alternate websites, constituting the freedom to express our project in a HTML
+- We accept that UNHCR at any time may discontinue the rights to our project
 
+## Ethical considerations made in this project
+1. Personally Identifiable Information (PII)
+The original dataset provided by UNHCR does not contain any level of personalised data. Prior to sharing the dataset, the UNHCR aggregated all findings, and so entries only contain the number of findings per standard and not the individuals that represent that finding.
+    2. Collection of data
+    Come back to this: <https://www.unhcr.org/refugee-statistics/methodology/>
+3. Representation
+The nature of this dataset suggests that it is a population-wide dataset that represents many different cultures and backgrounds. It is unclear how the factor of socioeconomic factor plays into the dataset, however, the topic of seeking asylum could imply variation within this factor. It is also unclear where the topic of illegal attempts at asylum stand within this datset
 
 ### Checklist for Ethically Using Data
-Follow this checklist when collecting and analysing data:
-1. Review your dataset for any personally identifiable information (PII). If it contains PII, remove it
-or otherwise anonymise your dataset, and control who is able to access the data. Be aware that it's
-almost impossible to truly anonymise a dataset, as anonymised datasets can frequently be linked with
-other datasets to identify the people included within them.
 2. Investigate how your dataset was collected. Ask yourself questions like the following: Did the people
 whose information is represented in the data consent to being included in the dataset? Did they consent
 to their information being used in this way? If you can't confirm consent, try finding a different data
 source or contacting the people included to obtain informed consent. As you make decisions about your
 work, be sure to consider how it may harm or benefit the people in the dataset or their relatives.
-3. Think about who the people represented in your dataset are, and how they relate to the people
-who your work is likely to impact. Consider questions such as the following: Are the people in your
-dataset representative of the full population? Are they from different socioeconomic classes and racial
-backgrounds? Are there different cultures represented? Make sure that you consider what types of
-people may have been excluded from your dataset.
 
 
 ### Data protection
