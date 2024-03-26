@@ -4,34 +4,36 @@ const COA = "AUS";
 const decisionsCOAfiltered = filterByAttribute(decisions, "coa_iso", COA);
 
 
-const decisionObject = {
+const decisionsObject = {
     Recognised: {attributeKey: "dec_recognized",
                 title: "Total Asylum Seekers Recognised 2008-2023"
                 },
     Other: {attributeKey: "dec_other",
-            title: "Total 'Other' Decisions  2008-2023"
+                title: "Total 'Other' Decisions  2008-2023"
     },
     Rejected: {attributeKey: "dec_rejected",
-            title: "Total Asylum Seekers Rejected 2008-2023"
+                title: "Total Asylum Seekers Rejected 2008-2023"
     },
     Closed: {attributeKey: "dec_closed",
-            title: "Total Closed Decisions 2008-2023"
+                title: "Total Closed Decisions 2008-2023"
     },
+    Total: {attributeKey: "dec_total",
+                title: "Total Applications 2008-2023"
+},
 }
 
 // const decisionLayers = ;
 
-for (const key in decisionObject) {
-    if (Object.hasOwnProperty.call(decisionObject, key)) {
-        const decision = decisionObject[key];
-        const decisionLayer = 
-        
+for (const key in decisionsObject) {
+    if (Object.hasOwnProperty.call(decisionsObject, key)) {
+        const dec = decisionsObject[key];
+        dec["layer"] = country_layer(countries, decisionsCOAfiltered, dec.attributeKey);
+        dec["legend"] = createLegend(dec.layer, dec.title);
+
     }
 }
 
-const cl = country_layer(countries, decisionsCOAfiltered, "dec_recognized");
-
-createMap(cl);
+createMap(decisionsObject);
 
 
 function filterByAttribute(data, attribute, value) {
@@ -77,7 +79,8 @@ function addDecisionTotalToCountry(geoJSON, decisionList, decisionType) {
 function country_layer(geoJSON, decisionList, decisionType) {    
     const c = addDecisionTotalToCountry(geoJSON, decisionList, decisionType);
 
-    console.log(c);
+    console.log(decisionType);
+
 
     const cLayer = L.choropleth(c, {
 
@@ -116,40 +119,73 @@ function country_layer(geoJSON, decisionList, decisionType) {
 function createMap(inputs) {
 
     // Create the base layers.
-    let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    let base = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     })
   
   
     // Create a baseMaps object.
     let baseMaps = {
-      "Street Map": street,
+      "Base Map": base,
     };
   
     // Create an overlay object to hold our overlay.
-    let overlayMaps = {
-      Input: inputs
-    };
+    let overlayMaps = {};
+    for (const key in inputs) {
+        if (Object.hasOwnProperty.call(inputs, key)) {
+            const layer = inputs[key];
+            overlayMaps[key] = layer.layer
+            
+        }
+    }
 
     // Create our map, giving it the streetmap and earthquakes layers to display on load.
-    let myMap = L.map("map", {
+    let map = L.map("map", {
       center: [
         -25, 125
       ],
       zoom: 2,
-      layers: [street, inputs]
+      layers: [base]
     });
 
-    const legend_1 = createLegend(inputs);
-    legend_1.addTo(myMap);
+    // const legend_1 = createLegend(inputs);
+    // legend_1.addTo(myMap);
 
+    map.on('overlayadd', function (eventLayer) {
+        if (eventLayer.name === 'Recognised') {         
+            inputs.Recognised.legend.addTo(map);
+        } else if (eventLayer.name === 'Other') { 
+            inputs.Other.legend.addTo(map);
+        } else if (eventLayer.name === 'Rejected') { 
+            inputs.Rejected.legend.addTo(map);
+        } else if (eventLayer.name === 'Closed') {
+            inputs.Closed.legend.addTo(map);
+        } else if (eventLayer.name === 'Total') {
+            inputs.Total.legend.addTo(map);
+        }
+    }
+    );
+
+    map.on('overlayremove', function (eventLayer) {
+        if (eventLayer.name === 'Recognised') {
+            map.removeControl(inputs.Recognised.legend);           
+        } else if (eventLayer.name === 'Other') { 
+            map.removeControl(inputs.Other.legend);
+        } else if (eventLayer.name === 'Rejected') { 
+            map.removeControl(inputs.Rejected.legend);
+        } else if (eventLayer.name === 'Closed') {
+            map.removeControl(inputs.Closed.legend);
+        } else if (eventLayer.name === 'Total') {
+            map.removeControl(inputs.Total.legend);
+        }
+    })
 
     // Create a layer control.
     // Pass it our baseMaps and overlayMaps.
     // Add the layer control to the map.
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
-    }).addTo(myMap);
+    }).addTo(map);
 }
 
 function log10(number) {
@@ -161,19 +197,23 @@ function log10(number) {
     }
 
 }
-function createLegend (choroplethLayer) {
+function createLegend (choroplethLayer, title) {
      // Add legend (don't forget to add the CSS from index.html)
     var legend = L.control({ position: 'bottomright' })
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend')
+        console.log("choropleth Layer: ", choroplethLayer);
         var limits = choroplethLayer.options.limits
         console.log(limits)
         var colors = choroplethLayer.options.colors
         var labels = []
 
         // Add min & max
-        div.innerHTML = '<div class="labels"><div class="min">' + limits[0] + '</div> \
-                <div class="max">' + limits[limits.length - 1] + '</div></div>'
+
+        div.innerHTML = `<div class="legendTitle"><h4>${title}</h4> </div>
+                        <br>
+                        <div class="labels"><div class="min">  ${limits[0]}  </div> 
+                        <div class="max"> ${limits[limits.length - 1]} </div></div>`
 
         limits.forEach(function (limit, index) {
             labels.push('<li style="background-color: ' + colors[index] + '"></li>')
@@ -187,12 +227,14 @@ function createLegend (choroplethLayer) {
 
 
 function getColour(decisionType) {
-    if (decisionType == "dec_rejected") {
-        return ['lightgrey', '#a6611a','#dfc27d','yellow','#80cdc1','#018571'];
-    } else if (decisionType == "dec_recognized") {
-        // return ['lightgrey', '#a6611a','#dfc27d','yellow','#80cdc1','#018571'];
-        return ['lightgrey', '#a6611a','orange', '#018571'];
-
+    if (decisionType == "dec_rejected" || decisionType == "dec_closed") {
+        return ['#fee5d9','#fcae91','#fb6a4a','#cb181d'];
+    } else if (decisionType == "dec_recognized" ) {
+        return ['#ffffcc','#c2e699','#78c679','#238443'];
+    } else if (decisionType == "dec_total" ) {
+        return ['#f0f9e8','#bae4bc','#7bccc4','#2b8cbe'];
+    } else {
+        return ['#f7f7f7','#cccccc','#969696','#525252'];
     }
 }
 
