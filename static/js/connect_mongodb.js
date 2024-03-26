@@ -38,8 +38,6 @@ async function findOneCountry(client, countryISO3) {
 }
 
 
-
-
 async function listDatabases(client){
     databasesList = await client.db().admin().listDatabases();
 
