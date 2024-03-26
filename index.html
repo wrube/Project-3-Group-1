@@ -19,7 +19,7 @@
     <li data-tab-target="#pricing" class="tab">Australia's Acceptance</li>
     <li data-tab-target="#about" class="tab">World rates</li>
   </ul>
-  
+  <!-- Start tab 1 -->
   <div class="tab-content">
     
     <div id="home" data-tab-content class="active">
@@ -33,6 +33,7 @@
       </div>
     </div>
 
+    <!-- Start tab 2 -->
     <div id="pricing" data-tab-content>
       <div class="container">
         <div class="row">
@@ -41,9 +42,36 @@
             <p>Use the dropdown to learn how Australia has responded to each country's asylum requests</p>
           </div>
         </div>
+    
+        <div class="row">
+          <div class="col-md-2">
+            <div class="card card-body bg-light">
+              <h6>Select a country of origin (coo):</h6>
+              <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            </div>
+            
+          </div>
+    
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-6">
+                <div id="graph1" style="height: 200px;">insert graph 1</div>
+              </div>
+              <div class="col-md-6">
+                <div id="graph2" style="height: 200px;">insert graph 2</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div id="map" style="height: 400px;">insert map</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>    
     
+    <!-- Start tab 3 -->
     <div id="about" data-tab-content>
       <div class="container"></div>
         <div class="row">
@@ -57,15 +85,6 @@
   
   </div>
  
-<!-- </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 p-5 text-center bg-light">
-        <h1>Belly Button Biodiversity Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
-      </div>
-    </div>
-  <script type="text/javascript" src="static/js/logic.js"></script> -->
 
 
 </body>

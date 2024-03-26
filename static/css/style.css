@@ -37,3 +37,18 @@ body {
   margin-left: 20px;
   margin-right: 20px;
 }
+
+#map {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
+
+#graph1 {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
+
+#graph2 {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
