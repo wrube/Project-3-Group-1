@@ -1,14 +1,36 @@
 // d3.json('data/asylum_decisions_2008-2023.json')
 
-const countryOfInterest = "UKR";
+// const countryOfInterest = "AFG";
 
-generateLayersAndMap(countryOfInterest, true);
 
-function generateLayersAndMap(countryOfInterest, countryIsCOA){
+// generateLayersAndMap(countryOfInterest, false, map);
+
+
+const uniqueCOOs = extractUniqueValuePairs(decisions, 'coo_iso', 'coo_name')
+const uniqueCOAs = extractUniqueValuePairs(decisions, 'coa_iso', 'coa_name')
+
+const countryNamesCOO = Object.values(uniqueCOOs);
+
+// select dropdown object
+const CoaDropdown = d3.select("#selCOAdropdown");
+
+populateDropdown(decisions, CoaDropdown);
+
+let activeCOA = CoaDropdown.property("value");
+
+
+let mapCOA;
+let mapCOO;
+let control;
+
+let mapInitiated = false;
+
+mapCOA = optionChangedCOA(activeCOA);
+
+
+
+function generateLayersAndMap(countryOfInterest, countryIsCOA, map){
     const decisionsFiltered = filterByAttribute(decisions, countryIsCOA, countryOfInterest);
-
-    
-    console.log(decisionsFiltered)
 
     // create an object that contains all the decision options and titles for map generation
     const decisionsObject = {
@@ -37,7 +59,23 @@ function generateLayersAndMap(countryOfInterest, countryIsCOA){
 
         }
     }
-    createMap(decisionsObject);
+    return createMap(decisionsObject, map);
+}
+
+function initateMap(baseMap) {
+    // Create our map, 
+    let map = L.map("map", {
+        center: [
+            0, 0
+        ],
+        zoom: 2,
+        layers: [baseMap]
+        });
+
+    return map;
+
+
+
 }
 
 function filterByAttribute(data, countryIsCOA, value) {
@@ -48,6 +86,16 @@ function filterByAttribute(data, countryIsCOA, value) {
     }
     ;
   }
+
+
+
+function optionChangedCOA(countryOfInterest) {
+    
+    const ISO3name = findKeyByValue(uniqueCOAs, countryOfInterest);
+    console.log('active country', ISO3name);
+    // use the global dataPromise to access data
+    return generateLayersAndMap(ISO3name, true, mapCOA);
+}
 
 function sumDecision(decisionArray, decisionType) {
     let total = 0;
@@ -91,9 +139,6 @@ function addDecisionTotalToCountry(geoJSON, decisionList, decisionType, countryI
 function country_layer(geoJSON, decisionList, decisionType, countryIsCOA) {    
     const c = addDecisionTotalToCountry(geoJSON, decisionList, decisionType, countryIsCOA);
 
-    console.log(decisionType);
-
-
     const cLayer = L.choropleth(c, {
 
         // Define which property in the features to use.
@@ -126,13 +171,22 @@ function country_layer(geoJSON, decisionList, decisionType, countryIsCOA) {
 }
 
 
-function createMap(inputs) {
+function createMap(inputs, map) {
+
+    // clear the map if it exists
+    // clearMap(map)
 
     // Create the base layers.
+    
+    
+    if (mapInitiated) {
+        map.remove()
+    }
+
     let base = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     })
-  
+
   
     // Create a baseMaps object.
     let baseMaps = {
@@ -149,14 +203,12 @@ function createMap(inputs) {
         }
     }
 
-    // Create our map, giving it the streetmap and earthquakes layers to display on load.
-    let map = L.map("map", {
-      center: [
-        0, 0
-      ],
-      zoom: 2,
-      layers: [base]
-    });
+    if (mapInitiated === false) {
+        map = initateMap(base);
+        mapInitiated = true
+    }
+    
+
 
 
 
@@ -196,9 +248,14 @@ function createMap(inputs) {
     // Create a layer control.
     // Pass it our baseMaps and overlayMaps.
     // Add the layer control to the map.
+    // control = L.control.activeLayers(baseMaps, overlayMaps);
+    // control.addTo(map);
+    // console.log(control.getActiveOverlayLayers())
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(map);
+
+    return map;
 }
 
 
@@ -213,18 +270,20 @@ function createLegend (choroplethLayer, title) {
         var colors = choroplethLayer.options.colors
         var labels = []
 
-        // Add min & max
+        // Add title and min & max
 
-        div.innerHTML = `<div class="legendTitle"><h4>${title}</h4> </div>
-                        <br>
+        div.innerHTML = `
+                        <div class="legendTitle"><h4>${title}</h4> </div>
                         <div class="labels"><div class="min">  ${limits[0]}  </div> 
                         <div class="max"> ${limits[limits.length - 1]} </div></div>`
 
         limits.forEach(function (limit, index) {
             labels.push('<li style="background-color: ' + colors[index] + '"></li>')
         })
+        
 
         div.innerHTML += '<ul>' + labels.join('') + '</ul>'
+        // console.log(div.innerHTML)
         return div
     }
     return legend;
@@ -243,4 +302,46 @@ function getColour(decisionType) {
     }
 }
 
+/**
+ * Populates the select tag in the html document.
+ * 
+ * @param {JSON} decisions    geoJSON object
+ * @param {dropdown} dropdown  A d3 dropdown selection object 
+ */
+function populateDropdown(decisions, dropdown) {
 
+    // populate the dropdown
+    dropdown.selectAll('option')
+        .data(countryNamesCOO)
+        .enter()
+        .append('option')
+        .text(d => d)
+}
+
+function extractUniqueValuePairs(list, ISOkey, nameKey) {
+    const uniqueCountries = {};
+
+    for (let i = 0; i < list.length; i++) {
+        const dec = list[i];
+        const ISO3 = dec[ISOkey];
+        const country = dec[nameKey]
+        if (!uniqueCountries.hasOwnProperty(ISO3)) {
+            uniqueCountries[ISO3] = country
+        }
+    }
+    
+    return uniqueCountries;
+}
+
+
+function findKeyByValue(obj, value) {
+    for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+            if (obj[key] === value) {
+                return key;
+            }
+        }
+    }
+    // If value is not found in the object
+    return null; 
+}

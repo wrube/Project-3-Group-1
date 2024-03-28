@@ -24,6 +24,9 @@
     <!-- leaflet-choropleth JavaScript -->
     <script type="text/javascript" src="static/js/choropleth.js"></script>
 
+
+    <script src="static/src/ActiveLayers.js"></script>
+
     <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
@@ -31,6 +34,10 @@
 <body>
 
   <!-- The div that holds our map -->
+  <div class="card">
+    <h3>Country of Asyulum (COA)</h3>
+    <select id="selCOAdropdown" onchange="optionChangedCOA(this.value)"></select>
+  </div>
   <div id="map"></div>
 
 
@@ -44,6 +51,8 @@
   <script type="text/javascript" src="data/asylum_decisions_2008-2023.js"></script>
   <script type="text/javascript" src="data/countries.js"></script>
   <script type="text/javascript" src="static/js/map.js"></script>
+  <!-- <script type="text/javascript" src="static/js/populateDropdown.js"></script> -->
+
 </body>
 
 </html>
