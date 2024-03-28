@@ -16,6 +16,11 @@
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
   crossorigin=""/>
 
+  <!-- Leaflet JavaScript code -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
   <!-- leaflet-choropleth JavaScript -->
   <script type="text/javascript" src="static/js/choropleth.js"></script>
  
@@ -116,7 +121,7 @@
           <div class="col-md-2">
             <div class="card card-body bg-light">
               <h6>Select a country of origin (coo):</h6>
-              <select id="selCOOdropdown" onchange="optionChangedCOO(this.value)</select>
+              <select id="selCOAdropdown" onchange="optionChangedCOA(this.value)"></select>
             </div>  
           </div>
           
@@ -177,9 +182,12 @@
     
   </div>
  
-
+  <script type="text/javascript" src="data/asylum_decisions_2008-2023.js"></script>
+  <script type="text/javascript" src="data/countries.js"></script>
+  <script type="text/javascript" src="static/js/map.js"></script>
 
 </body>
+</html>
 
 <!-- </html><!DOCTYPE html>
 <html lang="en">
@@ -204,14 +212,14 @@
     <!-- <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head> --> -->
 
-<body>
+<!-- <body> -->
 
   <!-- The div that holds our map -->
-  <div class="card">
+  <!-- <div class="card">
     <h3>Country of Asyulum (COA)</h3>
     <select id="selCOAdropdown" onchange="optionChangedCOA(this.value)"></select>
   </div>
-  <div id="map"></div>
+  <div id="map"></div> -->
 
 
 
@@ -221,11 +229,9 @@
 
 
   <!-- Our JavaScript -->
-  <script type="text/javascript" src="data/asylum_decisions_2008-2023.js"></script>
-  <script type="text/javascript" src="data/countries.js"></script>
-  <script type="text/javascript" src="static/js/map.js"></script>
+
   <!-- <script type="text/javascript" src="static/js/populateDropdown.js"></script> -->
 
-</body>
+<!-- </body>
 
 </html>
