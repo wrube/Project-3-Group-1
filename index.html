@@ -48,9 +48,9 @@
             <div class="card card-body bg-light">
               <h6>Select a country of origin (coo):</h6>
               <select id="selDataset" onchange="optionChanged(this.value)"></select>
-            </div>
-            
+            </div>  
           </div>
+          
     
           <div class="col-md-10">
             <div class="row">
@@ -63,7 +63,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <div id="map" style="height: 400px;">insert map</div>
+                <div id="map1" style="height: 400px;">insert map</div>
               </div>
             </div>
           </div>
@@ -74,15 +74,38 @@
     <!-- Start tab 3 -->
     <div id="about" data-tab-content>
       <div class="container"></div>
+        
         <div class="row">
           <div class="col-md-12 p-5 text-center bg-light">
             <h1>Global Rates of Asylum</h1>
             <p>Interact with the map to discover the percentage of each result</p>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="card card-body bg-light">
+              <h6>Are you interested in a country's rate of asylum or origin?:</h6>
+              <select id="selDataset2" onchange="optionChanged(this.value)"></select>
+            </div>  
+          </div>
+          <div class="col-md-2">
+            <div class="card card-body bg-light">
+              <h6>Select your country of interest:</h6>
+              <select id="selDataset3" onchange="optionChanged(this.value)"></select>
+            </div>  
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div id="map2" style="height: 400px;">insert map</div>
+          </div>
+        </div>
+
       </div>
     </div>
-  
+    
   </div>
  
 

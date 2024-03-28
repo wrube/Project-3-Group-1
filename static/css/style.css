@@ -38,10 +38,16 @@ body {
   margin-right: 20px;
 }
 
-#map {
+#map1 {
   border: 2px solid blue; /* Adjust width, style, and color as desired */
   margin-top: 20px;
 }
+
+#map2 {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
+
 
 #graph1 {
   border: 2px solid blue; /* Adjust width, style, and color as desired */
