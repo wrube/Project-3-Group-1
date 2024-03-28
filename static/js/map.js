@@ -64,7 +64,7 @@ function generateLayersAndMap(countryOfInterest, countryIsCOA, map){
 
 function initateMap(baseMap) {
     // Create our map, 
-    let map = L.map("map", {
+    let map = L.map("map1", {
         center: [
             0, 0
         ],

@@ -41,6 +41,7 @@ body {
 #map1 {
   border: 2px solid blue; /* Adjust width, style, and color as desired */
   margin-top: 20px;
+  height: 100%;
 }
 
 #map2 {
