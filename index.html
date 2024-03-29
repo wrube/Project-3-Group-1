@@ -33,6 +33,124 @@
 </head>
 
 <body>
+  <!-- Top Tabs -->
+  <ul class="tabs">
+    <li data-tab-target="#home" class="active tab">Intro</li>    
+    <li data-tab-target="#usage" class="tab">Australia's Acceptance</li>
+    <li data-tab-target="#pricing" class="tab">Australia's Acceptance</li>
+    <li data-tab-target="#about" class="tab">World rates</li>
+  </ul>
+
+
+  <!-- Start tab 1 -->
+  <div class="tab-content">
+    
+    <div id="home" data-tab-content class="active">
+      <div class="container">
+
+        <!-- Row 1 -->
+        <div class="row">
+          <div class="col-md-12 p-5 text-center bg-light">
+            <h1>Asylum Overview</h1>
+            <p>Welcome! Please use this tab to familiarise yourself with the concept of 'asylum seekers'</p>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="row">
+          <div class="writing-box">
+            <h3>What is an asylum seeker?</h3>
+            <p>Asylum, by definition, is the act of a state granting protection to someone who has left their own country as a political refugee. Those wishing to undertake this process are known as ‘asylum seekers’. 
+              Those that have successfully been granted this asylum are referred to as ‘refugees’.</p>
+          </div>
+        </div>
+        <!-- Row 3 -->
+        <div class="row">
+          <div class="writing-box">
+            <h3>What factors cause the need for asylum?</h3>
+            <p>The application of asylum is typically initiated because the seeker has undergone violations against their human rights, or because there is a fear of persecution (hostility). These factors are often 
+              attributed to aspects of the seeker that include religion, sexuality, political standpoint or nationality.</p>
+          </div>
+        </div>
+        <!-- Row 4 -->
+        <div class="row">
+          <div class="writing-box">
+            <h3>What is the purpose of this site?</h3>
+            <p>This site refers to data from the UNHCR to determine the rates of asylum seekers from 2008 to 2023. In third tab, we compare the rates of how each country that had residents apply for asylum in Australia have changed over time, and how Australia has responded to these applications.
+              In fourth tab, the data broadens and you will have the opportunity to search the rates that residents are either leaving the country, or applying to specific countries. You will gain the ability to ability to see the world-wide relationship and repercussions between these options.
+              </p>
+          </div>
+        </div>
+        <!-- Row 5 -->
+        <div class="row">
+          <div class="writing-box">
+            <p>For more information please refer to the UNHCR's methodology, as well as the terms of use guidelines:
+            </p>
+            <a href="https://www.unhcr.org/refugee-statistics/methodology/">
+              <img src="static/images/1.1.png" alt="Link to UNHCR: Who is an asylum seeker?">
+            </a>
+            <a href="https://www.unhcr.org/terms-use-datasets">
+              <img src="static/images/1.2.png" alt="UNHCR's terms of use">
+            </a>
+          </div>
+        </div>
+      <!-- Ending tab -->
+      </div>
+    </div>
+
+
+
+    <!-- Start tab 2 -->
+    <div id="usage" data-tab-content>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 p-5 text-center bg-light">
+            <h1>How to use</h1>
+            <p>To enhance your overall experience when using this site, please familiarise yourself with the following information</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pricing" data-tab-content>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 p-5 text-center bg-light">
+            <h1>Australia's Asylum Rates</h1>
+            <p>Use the dropdown to learn how Australia has responded to each country's asylum requests</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="card card-body bg-light">
+              <h6>Select a country of origin (coo):</h6>
+              <select id="selCOAdropdown" onchange="optionChangedCOA(this.value)"></select>
+            </div>  
+          </div>
+
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-6">
+                <div id="graph1" style="height: 200px;">insert graph 1</div>
+              </div>
+              <div class="col-md-6">
+                <div id="graph2" style="height: 200px;">insert graph 2</div>
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+      <!-- <div id="map1"></div>   -->
+    </div>
+
+
+
+
+  </div>
+
+
+
 
   <!-- The div that holds our map -->
   <div id="map1"></div>
@@ -47,7 +165,7 @@
   <!-- Our JavaScript -->
   <script type="text/javascript" src="data/asylum_decisions_2008-2023.js"></script>
   <script type="text/javascript" src="data/countries.js"></script>
-  <script type="text/javascript" src="static/js/map.js"></script>
+  <script type="text/javascript" src="static/js/map-bkup.js"></script>
 </body>
 
 </html>
