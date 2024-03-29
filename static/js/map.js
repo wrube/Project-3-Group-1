@@ -150,7 +150,7 @@ function createMap(inputs) {
     }
 
     // Create our map, giving it the streetmap and earthquakes layers to display on load.
-    let map = L.map("map", {
+    let map = L.map("map1", {
       center: [
         0, 0
       ],
