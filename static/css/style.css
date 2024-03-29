@@ -1,4 +1,4 @@
-[data-tab-content] {
+[data-tab-content]:not(.map-container) {
   display:none;
 }
 
@@ -36,6 +36,10 @@ body {
 .tab-content {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.map-container[data-tab-content] {
+  display: block !important; /* or any other appropriate display value */
 }
 
 #map1 {
