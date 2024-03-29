@@ -1,4 +1,4 @@
-[data-tab-content] {
+[data-tab-content]:not(.map-container) {
   display:none;
 }
 
@@ -36,6 +36,10 @@ body {
 .tab-content {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.map-container[data-tab-content] {
+  display: block !important; /* or any other appropriate display value */
 }
 
 #map1 {
@@ -85,9 +89,6 @@ body {
   margin-top: 20px;
 }
 
-
-
-
 /* Remove the default margin and padding from the body. */
 body {
   padding: 0;
@@ -95,12 +96,11 @@ body {
 }
 
 /* Set map, body, and html to 100% of the screen size. */
-
-/* body,
+/* #map,
+body,
 html {
-  height: 100%;
+  height: 800px;
 } */
-
 
 .legend {
   color: #555;
