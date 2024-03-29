@@ -66,9 +66,9 @@ function initateMap(baseMap) {
     // Create our map, 
     let map = L.map("map1", {
         center: [
-            0, 0
+            0, 12
         ],
-        zoom: 2,
+        zoom: 3,
         layers: [baseMap]
         });
 
