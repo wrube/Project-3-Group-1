@@ -57,8 +57,8 @@ body {
   max-width: 100%;
   max-height: 100%;
   touch-action: none;
-  width: 600px;
-  height: 400px;
+  /* width: 800px; */
+  height: 800px;
   position: relative;
   outline-style: none;
 }
@@ -95,12 +95,6 @@ body {
   margin: 0;
 }
 
-/* Set map, body, and html to 100% of the screen size. */
-/* #map,
-body,
-html {
-  height: 800px;
-} */
 
 .legend {
   color: #555;

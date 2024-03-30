@@ -9,31 +9,100 @@
 const uniqueCOOs = extractUniqueValuePairs(decisions, 'coo_iso', 'coo_name')
 const uniqueCOAs = extractUniqueValuePairs(decisions, 'coa_iso', 'coa_name')
 
-const countryNamesCOO = Object.values(uniqueCOOs);
+const countryNamesCOO = Object.values(uniqueCOOs).sort();
 
 // select dropdown object
-const CoaDropdown = d3.select("#selCOAdropdown");
+const CooDropdown = d3.select("#selCOOdropdown");
 
-populateDropdown(decisions, CoaDropdown);
+populateDropdown(countryNamesCOO, CooDropdown);
 
-let activeCOA = CoaDropdown.property("value");
+let activeCOA = CooDropdown.property("value");
 
 
 let mapCOA;
 let mapCOO;
 let control;
-
+let decisionsObject;
 let mapInitiated = false;
 
-mapCOA = optionChangedCOA(activeCOA);
+// mapCOO = optionChangedCOO(activeCOA);
+
+
+document.addEventListener("selCOOdropdown", function(event) {
+    // Initialize the map
+    let activeCOA = CooDropdown.property("value");
+
+    if (!mapInitiated) {
+        initiateMap()
+    }
+
+    generateLayersAndMap(ISO3name, true, mapCOO);
+
+    initiateMap()
+
+
+//     // Function to remove existing controls
+//     function removeExistingControls() {
+//       // Your code to remove existing Leaflet controls
+//     }
+
+//     // Function to update map based on dropdown selection
+//     function updateMap(selectedOption) {
+//       removeExistingControls();
+//       // Your code to update the map based on selected option
+//       // For example, add new layers, markers, controls, etc.
+//     }
+
+//     // Add event listener to dropdown menu
+//     d3.select("#data-select").on("change", function() {
+//       var selectedOption = d3.select(this).property("value");
+//       updateMap(selectedOption);
+//     });
+
+//     // Initialize map with default data
+//     var initialOption = d3.select("#data-select").property("value");
+//     updateMap(initialOption);
+  });
 
 
 
+
+/**
+ * 
+ * @param {string} countryOfInterest ISO3 name of country of interest
+ * @param {boolean} countryIsCOA Is the country of interest a COA?
+ * @param {LeafletMap} map map object
+ * @returns 
+ */
 function generateLayersAndMap(countryOfInterest, countryIsCOA, map){
     const decisionsFiltered = filterByAttribute(decisions, countryIsCOA, countryOfInterest);
+    // console.log('mapCOO', map)
+
+    // if (mapInitiated)  {
+    //     map.removeControl(control);
+    //     console.log('layer_control removed');
+
+    //     // check for residual active layers and delete
+    //     const overlayLayers = control.getActiveOverlayLayers();
+    //         for (var overlayId in overlayLayers) {
+    //             // console.log(overlayLayers[overlayId].name)
+    //             map.removeLayer(overlayLayers[overlayId]);
+    //             }
+
+
+    //     for (const key in decisionsObject) {
+    //         if (Object.hasOwnProperty.call(decisionsObject, key)) {
+    //             const decisionObj = decisionsObject[key];
+    //             // console.log(decisionObj.legend)
+    //             map.removeControl(decisionObj.legend)
+                
+    //         }
+    //     }
+    // }
+    decisionsObject = {};
 
     // create an object that contains all the decision options and titles for map generation
-    const decisionsObject = {
+    decisionsObject = {
         Recognised: {attributeKey: "dec_recognized",
                     title: "Total Asylum Seekers Recognised 2008-2023"
                     },
@@ -51,6 +120,8 @@ function generateLayersAndMap(countryOfInterest, countryIsCOA, map){
         },
     }
 
+
+
     for (const key in decisionsObject) {
         if (Object.hasOwnProperty.call(decisionsObject, key)) {
             const dec = decisionsObject[key];
@@ -59,24 +130,28 @@ function generateLayersAndMap(countryOfInterest, countryIsCOA, map){
 
         }
     }
+    // console.log(decisionsObject);
+
     return createMap(decisionsObject, map);
 }
 
-function initateMap(baseMap) {
+function initiateMap(mapDiv) { 
     // Create our map, 
-    let map = L.map("map1", {
+    let map = L.map("map2", {
         center: [
-            0, 12
+            0, 90
         ],
-        zoom: 3,
-        layers: [baseMap]
+        zoom: 2,
+        // layers: [baseMap, layer]
         });
 
     return map;
-
-
-
 }
+
+
+
+
+
 
 function filterByAttribute(data, countryIsCOA, value) {
     if (countryIsCOA == true) {
@@ -89,12 +164,18 @@ function filterByAttribute(data, countryIsCOA, value) {
 
 
 
-function optionChangedCOA(countryOfInterest) {
+function optionChangedCOO(countryOfInterest) {
     
     const ISO3name = findKeyByValue(uniqueCOAs, countryOfInterest);
     console.log('active country', ISO3name);
     // use the global dataPromise to access data
-    return generateLayersAndMap(ISO3name, true, mapCOA);
+
+    if (mapInitiated) {
+        console.log(mapCOO);
+        mapCOO.off();
+        mapCOO.remove()
+    }   
+    return generateLayersAndMap(ISO3name, true, mapCOO);
 }
 
 function sumDecision(decisionArray, decisionType) {
@@ -179,9 +260,7 @@ function createMap(inputs, map) {
     // Create the base layers.
     
     
-    if (mapInitiated) {
-        map.remove()
-    }
+
 
     let base = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -189,11 +268,25 @@ function createMap(inputs, map) {
 
   
     // Create a baseMaps object.
-    let baseMaps = {
+    const baseMaps = {
       "Base Map": base,
     };
   
     // Create an overlay object to hold our overlay.
+    const Recognised = inputs.Recognised.layer;
+    // const Other = inputs.Other.layer;
+    // const Closed = inputs.Closed.layer;
+    // const Rejected = inputs.Rejected.layer;
+    // const Total = inputs.Total.layer;
+
+    // console.log(typeof(Recognised))
+    // let layersGroup = L.layerGroup();
+    // layersGroup.addLayer(Recognised);
+    // layersGroup.addLayer(Other);
+    // layersGroup.addLayer(Closed);
+    // layersGroup.addLayer(Rejected);
+    // layersGroup.addLayer(Total);
+
     let overlayMaps = {};
     for (const key in inputs) {
         if (Object.hasOwnProperty.call(inputs, key)) {
@@ -202,12 +295,11 @@ function createMap(inputs, map) {
             
         }
     }
-
+    map = initiateMap(base, Recognised)
     if (mapInitiated === false) {
-        map = initateMap(base);
+        
         mapInitiated = true
-    }
-    
+    } 
 
 
 
@@ -249,9 +341,12 @@ function createMap(inputs, map) {
     // Pass it our baseMaps and overlayMaps.
     // Add the layer control to the map.
     // control = L.control.activeLayers(baseMaps, overlayMaps);
+    // console.log(control)
     // control.addTo(map);
+
     // console.log(control.getActiveOverlayLayers())
-    L.control.layers(baseMaps, overlayMaps, {
+    
+    control = L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(map);
 
@@ -264,16 +359,14 @@ function createLegend (choroplethLayer, title) {
     var legend = L.control({ position: 'bottomright' })
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend')
-        console.log("choropleth Layer: ", choroplethLayer);
         var limits = choroplethLayer.options.limits
-        console.log(limits)
         var colors = choroplethLayer.options.colors
         var labels = []
 
         // Add title and min & max
 
         div.innerHTML = `
-                        <div class="legendTitle"><h4>${title}</h4> </div>
+                        <div class="legendTitle"><h7>${title}</h7> </div>
                         <div class="labels"><div class="min">  ${limits[0]}  </div> 
                         <div class="max"> ${limits[limits.length - 1]} </div></div>`
 
@@ -305,21 +398,22 @@ function getColour(decisionType) {
 /**
  * Populates the select tag in the html document.
  * 
- * @param {JSON} decisions    geoJSON object
+ * @param {array} listOfOptions    list of options
  * @param {dropdown} dropdown  A d3 dropdown selection object 
  */
-function populateDropdown(decisions, dropdown) {
-
+function populateDropdown(listOfOptions, dropdown) {
+    // First, remove all existing options
+    dropdown.selectAll('option').remove();
     // populate the dropdown
     dropdown.selectAll('option')
-        .data(countryNamesCOO)
+        .data(listOfOptions)
         .enter()
         .append('option')
         .text(d => d)
 }
 
 function extractUniqueValuePairs(list, ISOkey, nameKey) {
-    const uniqueCountries = {};
+    let uniqueCountries = {};
 
     for (let i = 0; i < list.length; i++) {
         const dec = list[i];
@@ -329,7 +423,6 @@ function extractUniqueValuePairs(list, ISOkey, nameKey) {
             uniqueCountries[ISO3] = country
         }
     }
-    
     return uniqueCountries;
 }
 
