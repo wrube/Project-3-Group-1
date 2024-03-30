@@ -345,3 +345,6 @@ function findKeyByValue(obj, value) {
     // If value is not found in the object
     return null; 
 }
+setTimeout(function () {
+    window.dispatchEvent(new Event('resize'));
+  }, 1000);
