@@ -354,6 +354,8 @@ function createMap(inputs, map) {
 }
 
 
+
+
 function createLegend (choroplethLayer, title) {
      // Add legend (don't forget to add the CSS from index.html)
     var legend = L.control({ position: 'bottomright' })
