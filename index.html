@@ -107,7 +107,7 @@
       </div>
     </div>
 
-    <!-- Start tab 2 -->
+    <!-- Start tab 3 -->
     <div id="pricing" data-tab-content>
       <div class="container">
         <div class="row">
@@ -147,7 +147,7 @@
       
     </div>    
 
-    <!-- Start tab 3 -->
+    <!-- Start tab 4 -->
     <div id="about" data-tab-content>
       <div class="container"></div>
         
@@ -162,13 +162,16 @@
           <div class="col-md-2">
             <div class="card card-body bg-light">
               <h6>Are you interested in a country's rate of asylum or origin?:</h6>
-              <select id="selDataset2" onchange="optionChanged(this.value)"></select>
+              <select id="selCountryType" name="Country Type">
+                <option value="coa">Country of Asylum</option>
+                <option value="coo">Country of Origin</option>
+              </select>
             </div>  
           </div>
           <div class="col-md-2">
             <div class="card card-body bg-light">
               <h6>Select your country of interest:</h6>
-              <select id="selDataset3" onchange="optionChanged(this.value)"></select>
+              <select id="selCountryOfInterest"></select>
             </div>  
           </div>
         </div>
@@ -188,6 +191,7 @@
   <script type="text/javascript" src="data/asylum_decisions_2008-2023.js"></script>
   <script type="text/javascript" src="data/countries.js"></script>
   <script type="text/javascript" src="static/js/map-functions.js"></script>
+  <script type="text/javascript" src="static/js/populateDropdowns.js"></script>
   <script type="text/javascript" src="static/js/map1.js"></script>
 </body>
 </html>

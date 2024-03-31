@@ -1,25 +1,30 @@
 const countryOfInterest = "AUS";
 const mapInitiated = false;
-let map;
+let map1;
 
 // Initialize the map
 if (!mapInitiated);{
-    map = initiateMap("map1");
+    map1 = initiateMap("map1");
 }
 
+
 // create basemap
-baseMap = createBaseMap(map);
+let baseMap1 = createBaseMap(map1);
 // baseMap.addTo(map);
 
 // create layers
-let layersContainer = generateLayers(countryOfInterest, true);
-let overlays = createOverlay(layersContainer);
+let layersContainer1 = generateLayers(countryOfInterest, true);
+let overlays1 = createOverlay(layersContainer1);
+
+//set starting layer
+layersContainer1.Recognised.layer.addTo(map1);
+layersContainer1.Recognised.legend.addTo(map1);
 
 // create legend control
-let layerControl = createLayerControl(baseMap, overlays);
-layerControl.addTo(map);
+let layerControl1 = createLayerControl(baseMap1, overlays1);
+layerControl1.addTo(map1);
 
-toggleLegends(layersContainer);
+toggleLegends(layersContainer1);
 
 // // create legend control array;
 // let legendControlArray = [];

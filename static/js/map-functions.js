@@ -38,18 +38,11 @@ function createBaseMap(map) {
 
 
 function createLayerControl(baseMap, overlays){
-    // Option 1 using plugin
     // Add the layer control to the map.
     control = L.control.activeLayers(baseMap, overlays, {
         collapsed: false
         }
-        );
-
-    // Option 2
-    // control = L.control.layers(baseMap, overlays, {
-    //     collapsed: false
-    //  })
-    
+    );    
     return control;
 }
 
@@ -207,62 +200,46 @@ function createOverlay(inputs) {
 
 function toggleLegends(inputs){
      // add the relevent legend according to the selected overlay layer
-     map.on('overlayadd', function (eventLayer) {
+     map1.on('overlayadd', function (eventLayer) {
         if (eventLayer.name === 'Recognised') {         
-            inputs.Recognised.legend.addTo(map);
+            inputs.Recognised.legend.addTo(map1);
         } else if (eventLayer.name === 'Other') { 
-            inputs.Other.legend.addTo(map);
+            inputs.Other.legend.addTo(map1);
         } else if (eventLayer.name === 'Rejected') { 
-            inputs.Rejected.legend.addTo(map);
+            inputs.Rejected.legend.addTo(map1);
         } else if (eventLayer.name === 'Closed') {
-            inputs.Closed.legend.addTo(map);
+            inputs.Closed.legend.addTo(map1);
         } else if (eventLayer.name === 'Total') {
-            inputs.Total.legend.addTo(map);
+            inputs.Total.legend.addTo(map1);
             }
         }
     );
 
 
     // remove the relevent legend according to the deselected overlay layer
-    map.on('overlayremove', function (eventLayer) {
+    map1.on('overlayremove', function (eventLayer) {
         if (eventLayer.name === 'Recognised') {
-            map.removeControl(inputs.Recognised.legend);           
+            map1.removeControl(inputs.Recognised.legend);           
         } else if (eventLayer.name === 'Other') { 
-            map.removeControl(inputs.Other.legend);
+            map1.removeControl(inputs.Other.legend);
         } else if (eventLayer.name === 'Rejected') { 
-            map.removeControl(inputs.Rejected.legend);
+            map1.removeControl(inputs.Rejected.legend);
         } else if (eventLayer.name === 'Closed') {
-            map.removeControl(inputs.Closed.legend);
+            map1.removeControl(inputs.Closed.legend);
         } else if (eventLayer.name === 'Total') {
-            map.removeControl(inputs.Total.legend);
+            map1.removeControl(inputs.Total.legend);
         }
         }
     )
 }
 
-function createMap(inputs) {
-
-    // baseMaps = createBaseMap();
-
-  
-
-
-
-   
-
-    // Create a layer control
-    createLayerControl(baseMaps, overlayMaps);
-}
-
 
 function createLegend (choroplethLayer, title) {
      // Add legend (don't forget to add the CSS from index.html)
-    var legend = L.control({ position: 'bottomright' })
+    var legend = L.control({ position: 'bottomleft' })
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend')
-        console.log("choropleth Layer: ", choroplethLayer);
         var limits = choroplethLayer.options.limits
-        console.log(limits)
         var colors = choroplethLayer.options.colors
         var labels = []
 
