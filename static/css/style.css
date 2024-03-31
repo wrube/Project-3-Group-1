@@ -1,41 +1,71 @@
-/* Remove the default margin and padding from the body. */
+[data-tab-content] {
+  display:none;
+}
+
+.active[data-tab-content] {
+  display: block;
+}
+
 body {
   padding: 0;
   margin: 0;
 }
 
-/* Set map, body, and html to 100% of the screen size. */
-#map,
-body,
-html {
-  height: 100%;
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid black;
 }
 
-.legend {
-  color: #555;
-  padding: 6px 8px;
-  font: 12px Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  background: white;
-  background: rgba(255,255,255,0.8);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+.tab {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.tab-active {
+  background-color: #CCC
+}
+
+.tab:hover {
+  background-color: #AAA;
+}
+
+.tab-content {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#map1 {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
+
+#map2 {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
+
+
+#graph1 {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
+
+#graph2 {
+  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  margin-top: 20px;
+}
+
+.writing-box {
+  background-color: #ffffff; /* Light background color */
+  border: 1px solid #030000;
+  border-bottom: 2px solid #ccc; /* Darker accent on bottom border */
   border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 15px; /* Add some space between boxes */
+  margin-top: 20px;
 }
-.legend ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  clear: both;
-}
-.legend li {
-  display: inline-block;
-  width: 20px;
-  height: 22px;
-}
-.legend .min {
-  float: left;
-  padding-bottom: 5px;
-}
-.legend .max {
-  float: right;
-}
+
