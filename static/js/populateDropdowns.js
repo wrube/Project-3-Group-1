@@ -14,7 +14,9 @@ const dropdownCountryTab4 = d3.select("#selCountryOfInterest")
 
 populateDropdown(countryNames.coo, dropdownCooTab3);
 
-// let activeCoaTab3 = dropdownCoaTab3.property("value");
+// populate Tab 4 dropdowns
+const initCountryType = dropdownCountryTypeTab4.property("value");
+populateDropdown(countryNames[initCountryType], dropdownCountryTab4);
 
 // Event listener for country type
 dropdownCountryTypeTab4.on("change", function() {
