@@ -203,15 +203,15 @@ function toggleLegends(inputs, map){
      // add the relevent legend according to the selected overlay layer
      map.on('overlayadd', function (eventLayer) {
         if (eventLayer.name === 'Recognised') {         
-            inputs.Recognised.legend.addTo(map1);
+            inputs.Recognised.legend.addTo(map);
         } else if (eventLayer.name === 'Other') { 
-            inputs.Other.legend.addTo(map1);
+            inputs.Other.legend.addTo(map);
         } else if (eventLayer.name === 'Rejected') { 
-            inputs.Rejected.legend.addTo(map1);
+            inputs.Rejected.legend.addTo(map);
         } else if (eventLayer.name === 'Closed') {
-            inputs.Closed.legend.addTo(map1);
+            inputs.Closed.legend.addTo(map);
         } else if (eventLayer.name === 'Total') {
-            inputs.Total.legend.addTo(map1);
+            inputs.Total.legend.addTo(map);
             }
         }
     );
@@ -220,15 +220,15 @@ function toggleLegends(inputs, map){
     // remove the relevent legend according to the deselected overlay layer
     map.on('overlayremove', function (eventLayer) {
         if (eventLayer.name === 'Recognised') {
-            map1.removeControl(inputs.Recognised.legend);           
+            map.removeControl(inputs.Recognised.legend);           
         } else if (eventLayer.name === 'Other') { 
-            map1.removeControl(inputs.Other.legend);
+            map.removeControl(inputs.Other.legend);
         } else if (eventLayer.name === 'Rejected') { 
-            map1.removeControl(inputs.Rejected.legend);
+            map.removeControl(inputs.Rejected.legend);
         } else if (eventLayer.name === 'Closed') {
-            map1.removeControl(inputs.Closed.legend);
+            map.removeControl(inputs.Closed.legend);
         } else if (eventLayer.name === 'Total') {
-            map1.removeControl(inputs.Total.legend);
+            map.removeControl(inputs.Total.legend);
         }
         }
     )
@@ -318,23 +318,42 @@ function findKeyByValue(obj, value) {
     // If value is not found in the object
 }
 
-function countryOutline(countryDisplay, map) {
-    if (countryDisplay) {
-        map.removeLayer(countryDisplay)
-    }
-    const countryName = d3.select(this).property("value");
-    const ISO3name = findKeyByValue(uniqueCOOs, countryName);
-    filteredCountry = countries.features.filter(feature => {
-        return feature.properties.ISO_A3 === ISO3name
+function countryOutline(countryName) {
+    const filteredCountry = countries.features.filter(feature => {
+        return feature.properties.ISO_A3 === countryName;
         })
+    return filteredCountry[0];
+}
 
-    countryDisplay = L.geoJSON(filteredCountry[0], {
+
+function countryLayer(countryOutline) {
+    const layer = L.geoJSON(countryOutline, {
         style: {
             // Border colour
-            color: "blue",
+            color: "black",
             weight: 2,
             fillOpacity: 0
           },
     });
-    return countryDisplay
+    return layer
 }
+
+function updateMapOnChange(map, name) {
+
+    const ISO3name = findKeyByValue(uniqueCOOs, name);
+
+    const outline = countryOutline(ISO3name);
+    let layer = countryLayer(outline);
+    layer.addTo(map);    
+
+    // keep outline on top of all layers
+    map.on('overlayadd', function () {
+        layer.bringToFront(map);
+    });
+    // calculate and display the country centroid
+    let marker = L.geoJSON(turf.centroid(outline));
+    marker.addTo(map);
+    return {layer: layer,
+            centroid: marker};
+
+    }
