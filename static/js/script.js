@@ -12,5 +12,10 @@ tabs.forEach(tab => {
         })
         tab.classList.add('active')
         target.classList.add('active')
+
+        // If the clicked tab is the one containing the map, invalidate the map size
+        if (tab.dataset.tabTarget === '#pricing') {
+            map1.invalidateSize();
+        }
     })
 })
