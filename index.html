@@ -34,8 +34,8 @@
   <link  type="text/css" href="static/css/style.css" rel="stylesheet">
 </head>
 
-<body>
-  <ul class="tabs">
+<body class="background">
+  <ul class="tabs", class= "background-tabs">
     <li data-tab-target="#home" class="active tab">Intro</li>    
     <li data-tab-target="#usage" class="tab">Australia's Acceptance</li>
     <li data-tab-target="#pricing" class="tab">Australia's Acceptance</li>
@@ -50,9 +50,9 @@
 
         <!-- Row 1 -->
         <div class="row">
-          <div class="col-md-12 p-5 text-center bg-light">
-            <h1>Asylum Overview</h1>
-            <p>Welcome! Please use this tab to familiarise yourself with the concept of 'asylum seekers'</p>
+          <div class="col-md-12 p-5 text-center bg-light" style="background-color: rgb(92, 92, 92) !important;">
+            <h1 class="custom-font">Asylum Overview</h1>
+            <p class="custom-font2"><br>Welcome! Please use this tab to familiarise yourself with the concept of 'asylum seekers'</p>
           </div>
         </div>
         <!-- Row 2 -->
@@ -102,7 +102,7 @@
     <div id="usage" data-tab-content>
       <div class="container">
         <div class="row">
-          <div class="col-md-12 p-5 text-center bg-light">
+          <div class="col-md-12 p-5 text-center bg-light" style="background-color: rgb(92, 92, 92) !important;">
             <h1>How to use</h1>
             <p>To enhance your overall experience when using this site, please familiarise yourself with the following information</p>
           </div>
@@ -114,9 +114,9 @@
     <div id="pricing" data-tab-content>
       <div class="container">
         <div class="row">
-          <div class="col-md-12 p-5 text-center bg-light">
-            <h1>Australia's Asylum Rates</h1>
-            <p>Use the dropdown to learn how Australia has responded to each country's asylum requests</p>
+          <div class="col-md-12 p-5 text-center bg-light" style="background-color: rgb(92, 92, 92) !important;">
+            <h1 class="custom-font">Australia's Asylum Rates</h1>
+            <p class="custom-font2">Use the dropdown to learn how Australia has responded to each country's asylum requests</p>
           </div>
         </div>
     
@@ -139,15 +139,14 @@
                 <div id="graph2" style="height: 200px;">insert graph 2</div>
               </div>
             </div>
-            <div class="row map-container">
+            <div class="row">
               <div class="col-md-12">
-                <div id="map1" style="height: 400px;">insert map</div>
+                <div id="map1" style="height: 400px;"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
     </div>    
 
     <!-- Start tab 4 -->
@@ -155,9 +154,9 @@
       <div class="container"></div>
         
         <div class="row">
-          <div class="col-md-12 p-5 text-center bg-light">
-            <h1>Global Rates of Asylum</h1>
-            <p>Interact with the map to discover the percentage of each result</p>
+          <div class="col-md-12 p-5 text-center bg-light" style="background-color: rgb(92, 92, 92) !important;">
+            <h1 class="custom-font">Global Rates of Asylum</h1>
+            <p class="custom-font2">Interact with the map to discover the percentage of each result</p>
           </div>
         </div>
 
@@ -179,14 +178,14 @@
           </div>
         </div>
 
-        <div class="row map-container" >
+        <div class="row">
           <div class="col-md-12">
-            <div id="map2" class="map-container" style="height: 400px;">insert map</div>
+            <div id="map2" style="height: 400px;">insert map</div>
           </div>
         </div>
-        <!-- <div id="map1" style="height: 400px;">insert map</div> -->
+        
+
       </div>
-      <!-- <div id="map1" style="height: 400px;">insert map</div> -->
     </div>
     
   </div>
@@ -197,51 +196,5 @@
   <script type="text/javascript" src="static/js/populateDropdowns.js"></script>
   <script type="text/javascript" src="static/js/map1.js"></script>
 </body>
-</html>
-
-<!-- </html><!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Project 3</title>
-
-    Leaflet JavaScript code
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-
-    D3 library -->
-    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
-
-
-
-    <!-- Our CSS -->
-    <!-- <link rel="stylesheet" type="text/css" href="static/css/style.css">
-</head> -->
-
-<!-- <body> -->
-
-  <!-- The div that holds our map -->
-  <!-- <div class="card">
-    <h3>Country of Asyulum (COA)</h3>
-    <select id="selCOAdropdown" onchange="optionChangedCOA(this.value)"></select>
-  </div>
-  <div id="map"></div> -->
-
-
-
-  <!-- D3 JavaScript -->
-  <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
-
-
-
-  <!-- Our JavaScript -->
-
-  <!-- <script type="text/javascript" src="static/js/populateDropdown.js"></script> -->
-
-<!-- </body>
 
 </html>
