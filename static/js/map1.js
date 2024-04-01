@@ -27,12 +27,13 @@ layerControl1.addTo(map1);
 toggleLegends(layersContainer1, map1);
 
 //listener to the COO dropdown
-// initialised = false;
 let countryDisplay;
+let countryCentroid;
 dropdownCoaTab3.on("change", function() {
 
     if (countryDisplay) {
-        map1.removeLayer(countryDisplay)
+        map1.removeLayer(countryDisplay);
+        map1.removeLayer(countryCentroid);
     }
     const countryName = d3.select(this).property("value");
     const ISO3name = findKeyByValue(uniqueCOOs, countryName);
@@ -54,11 +55,13 @@ dropdownCoaTab3.on("change", function() {
         countryDisplay.bringToFront();
     });
     // find centroid
-    // const countryCentroid = turf.centroid(countryDisplay);
-    // console.log(countryCentroid);
+    console.log(filteredCountry);
+    countryCentroid = L.geoJSON(turf.centroid(filteredCountry[0]));
+    countryCentroid.addTo(map1);
+
+
+    console.log(countryCentroid);
     }
-
-
 );
 
 
