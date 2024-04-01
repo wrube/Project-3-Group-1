@@ -1,11 +1,5 @@
-//console.log(decisions)
-//let coo="Afghanistan"
-//let dec_closed=0
-//let dec_other=0
-//let dec_recognized=0
-//let dec_rejected=0
 let values = [155,0,13762,3368]
-let labels=['dec_closed','dec_other','dec_recognized','dec_rejected']
+let labels=['closed','other','recognized','rejected']
 function init() {
     let data = [{
       values: values,
