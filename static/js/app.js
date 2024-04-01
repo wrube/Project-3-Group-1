@@ -1,4 +1,4 @@
-const url = "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json";
+// const url = "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json";
 
 // Filter sample names based on country
 let sampleNames = decisions.filter(number => number.coa_iso == "AUS");
@@ -13,7 +13,7 @@ function dropdown_menu(){
     for (let i = 0; i < sampleNames.length; i++) {
       countries_list.push(sampleNames[i]['coo_name'])
     }
- console.log(countries_list)
+//  console.log(countries_list)
  
   // Remove duplicates from countries_list
 countries_list = (removeDuplicates(countries_list));
@@ -112,7 +112,8 @@ console.log
       {
         x: unique_years_list,
         y: refugees_list,
-        type: 'scatter'
+        type: 'scatter',
+        name: 'Closed'
         
       },
       {
@@ -146,7 +147,7 @@ console.log
     };
 
    // Generate graph1
-    Plotly.newPlot('line', line_data, layout);
+    Plotly.newPlot('graph1', line_data, layout);
 
 
 }

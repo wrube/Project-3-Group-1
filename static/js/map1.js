@@ -48,14 +48,22 @@ countryCentroid.addTo(map1);
 
 // have a listener object on the coo dropdown and update country outlines and markers
 dropdownCooTab3.on("change", function() {
-    getData();
-
     if (countryDisplay) {
         map1.removeLayer(countryDisplay);
         map1.removeLayer(countryCentroid);
     }
+
+
+
+
     const countryName = d3.select(this).property("value");
     const ISO3name = findKeyByValue(uniqueCOOs, countryName);
+
+    // link to Pie chart function
+    getData(); 
+
+    // Link to Line Chart
+    line_chart(countryName);
 
     const outline = countryOutline(ISO3name);
     countryDisplay = countryLayer(outline);
