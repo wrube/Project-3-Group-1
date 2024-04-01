@@ -86,3 +86,149 @@ body {
   margin-top: 20px;
 }
 
+/* ------------------------------------------------------
+Comment section */
+/* body {
+  min-height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
+} */
+
+.container2 {
+  background:#fff;
+  padding: 20px;
+  font-family: monospace;
+  width: 900px;
+  box-shadow: 0 0 5px #000; 
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.head {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.text {
+  margin: 10px 0;
+  font-family: sans-serif;
+  font-size: 0.9cm;
+}
+
+.commentbox {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.commentbox > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.content {
+  width: 100%;
+}
+
+.user {
+  border: none;
+  outline: none;
+  margin: 5px 0;
+  color: #db2020;
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.commentinput > input {
+  border: none;
+  padding: 10px;
+  padding-left: 0;
+  outline: none;
+  border-bottom: 2px solid blue;
+  margin-bottom: 10px;
+  width: 95%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #2c944b;
+}
+
+.buttons button {
+  padding: 5px 10px;
+  background: lightgray;
+  color: #808080;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.buttons button.abled {
+  background: blue;
+  color: #fff
+}
+
+
+.notify {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.notify > input {
+  margin-right: 5px;
+}
+
+.parents {
+  font-family: Arial, sans-serif;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.parents h1 {
+  font-size: 0.6cm;
+}
+
+.parents p {
+  margin: 10px 0;
+  font-size: 0.6cm;
+}
+
+.parents > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.engagements {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.engagements img {
+  width: 20px;
+}
+
+.engagements img:nth-child(1) {
+  margin-right: 10px;
+  width: 25px;
+}
+
+.date {
+  color: #808080;
+  font-size: 0.6cm;
+}
