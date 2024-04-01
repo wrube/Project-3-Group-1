@@ -24,8 +24,6 @@ function init() {
 }
 
 function getData(){
-  console.log("Hi")
-    let data=[]
     let dec_closed=0
     let dec_other=0
     let dec_recognized=0

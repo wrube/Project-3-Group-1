@@ -31,10 +31,20 @@ toggleLegends(layersContainer2, map2);
 
 // listen to the tab4 country dropdown
 dropdownCountryTab4.on("change", function() {
+    
+
+
     const countryType = dropdownCountryTypeTab4.property("value");
     const countryName = d3.select(this).property("value");  
     console.log(countryNames[countryType]); 
-    const ISO3name = findKeyByValue(countryNames[countryType], countryName)
-    console.log("country Type: ", countryType, countryName, ISO3name);
+    let ISO3;
+    if (countryType === 'coo' ) {
+        ISO3 = findKeyByValue(uniqueCOOs, countryName);
+    }
+    else {
+        ISO3 = findKeyByValue(uniqueCOAs, countryName);
+    }
+    
+    console.log("country Type: ", countryType, countryName, ISO3);
 
 });
