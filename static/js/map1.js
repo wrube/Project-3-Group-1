@@ -48,6 +48,7 @@ countryCentroid.addTo(map1);
 
 // have a listener object on the coo dropdown and update country outlines and markers
 dropdownCooTab3.on("change", function() {
+    getData();
 
     if (countryDisplay) {
         map1.removeLayer(countryDisplay);
