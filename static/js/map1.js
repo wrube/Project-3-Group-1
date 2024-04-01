@@ -24,8 +24,52 @@ layersContainer1.Recognised.legend.addTo(map1);
 let layerControl1 = createLayerControl(baseMap1, overlays1);
 layerControl1.addTo(map1);
 
-toggleLegends(layersContainer1);
+toggleLegends(layersContainer1, map1);
 
+//listener to the COO dropdown
+// initialised = false;
+let countryDisplay;
+dropdownCoaTab3.on("change", function() {
+
+    if (countryDisplay) {
+        map.removeLayer(countryDisplay)
+    }
+    const countryName = d3.select(this).property("value");
+    const ISO3name = findKeyByValue(uniqueCOOs, countryName);
+    filteredCountry = countries.features.filter(feature => {
+        return feature.properties.ISO_A3 === ISO3name
+        })
+
+    countryDisplay = L.geoJSON(filteredCountry[0], {
+        style: {
+            // Border colour
+            color: "blue",
+            weight: 2,
+            fillOpacity: 0
+          },
+    });
+    countryDisplay.addTo(map1);
+
+    map1.on('overlayadd', function() {
+        countryDisplay.bringToFront();
+    });
+    // find centroid
+    // const countryCentroid = turf.centroid(countryDisplay);
+    // console.log(countryCentroid);
+    }
+
+
+);
+
+
+
+
+
+
+
+
+
+//----------------------------------------------
 // // create legend control array;
 // let legendControlArray = [];
 // for (const dec in layersContainer) {

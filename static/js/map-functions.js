@@ -9,7 +9,7 @@ function initiateMap(htmlElement) {
     // Create our map, 
     let map = L.map(htmlElement, {
         center: [
-            10, 150
+            10, 20
         ],
         zoom: 2,
         });
@@ -164,7 +164,8 @@ function country_layer(geoJSON, decisionList, decisionType, countryIsCOA) {
           // Border colour
           color: "#fff",
           weight: 1,
-          fillOpacity: 0.8
+          fillOpacity: 0.8,
+          opacity: 0.5
         },
     
         // Binding a popup to each layer
@@ -198,9 +199,9 @@ function createOverlay(inputs) {
 }
 
 
-function toggleLegends(inputs){
+function toggleLegends(inputs, map){
      // add the relevent legend according to the selected overlay layer
-     map1.on('overlayadd', function (eventLayer) {
+     map.on('overlayadd', function (eventLayer) {
         if (eventLayer.name === 'Recognised') {         
             inputs.Recognised.legend.addTo(map1);
         } else if (eventLayer.name === 'Other') { 
@@ -217,7 +218,7 @@ function toggleLegends(inputs){
 
 
     // remove the relevent legend according to the deselected overlay layer
-    map1.on('overlayremove', function (eventLayer) {
+    map.on('overlayremove', function (eventLayer) {
         if (eventLayer.name === 'Recognised') {
             map1.removeControl(inputs.Recognised.legend);           
         } else if (eventLayer.name === 'Other') { 
@@ -315,4 +316,25 @@ function findKeyByValue(obj, value) {
         }
     }
     // If value is not found in the object
+}
+
+function countryOutline(countryDisplay, map) {
+    if (countryDisplay) {
+        map.removeLayer(countryDisplay)
+    }
+    const countryName = d3.select(this).property("value");
+    const ISO3name = findKeyByValue(uniqueCOOs, countryName);
+    filteredCountry = countries.features.filter(feature => {
+        return feature.properties.ISO_A3 === ISO3name
+        })
+
+    countryDisplay = L.geoJSON(filteredCountry[0], {
+        style: {
+            // Border colour
+            color: "blue",
+            weight: 2,
+            fillOpacity: 0
+          },
+    });
+    return countryDisplay
 }
