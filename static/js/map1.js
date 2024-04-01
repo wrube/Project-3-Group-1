@@ -32,7 +32,7 @@ let countryDisplay;
 dropdownCoaTab3.on("change", function() {
 
     if (countryDisplay) {
-        map.removeLayer(countryDisplay)
+        map1.removeLayer(countryDisplay)
     }
     const countryName = d3.select(this).property("value");
     const ISO3name = findKeyByValue(uniqueCOOs, countryName);
