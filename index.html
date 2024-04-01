@@ -13,7 +13,7 @@
   <link  type="text/css" href="static/css/style.css" rel="stylesheet">
 </head>
 
-<body class="background">
+<body class="background" class="background">
   <ul class="tabs", class= "background-tabs">
     <li data-tab-target="#home" class="active tab">Intro</li>    
     <li data-tab-target="#usage" class="tab">Australia's Acceptance</li>
@@ -29,9 +29,9 @@
 
         <!-- Row 1 -->
         <div class="row">
-          <div class="col-md-12 p-5 text-center bg-light" style="background-color: rgb(92, 92, 92) !important;">
-            <h1 class="custom-font">Asylum Overview</h1>
-            <p class="custom-font2"><br>Welcome! Please use this tab to familiarise yourself with the concept of 'asylum seekers'</p>
+          <div class="col-md-12 p-5 text-center bg-light">
+            <h1>Asylum Overview</h1>
+            <p>Welcome! Please use this tab to familiarise yourself with the concept of 'asylum seekers'</p>
           </div>
         </div>
         <!-- Row 2 -->
@@ -128,7 +128,7 @@
       </div>
     </div>
 
-    <!-- Start tab 3 -->
+    <!-- Start tab 2 -->
     <div id="pricing" data-tab-content>
       <div class="container">
         <div class="row">
@@ -158,15 +158,15 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <div id="map1" style="height: 400px;"></div>
+                <div id="map1" style="height: 400px;">insert map</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>    
-
-    <!-- Start tab 4 -->
+    
+    <!-- Start tab 3 -->
     <div id="about" data-tab-content>
       <div class="container"></div>
         
@@ -196,6 +196,32 @@
           <div class="col-md-12">
             <div id="map2" style="height: 400px;">insert map</div>
           </div>
+        </div>
+
+        <!-- Comment section -->
+        <div class="container2">
+          <div class="head"><h1>Post a Comment</h1></div>
+          <div><span id="comment">0</span> Comments</div>
+          <div class="text"><p>Please share your findings</p></div>
+          <div class="comments"></div>
+          <div class="commentbox">
+            <img src="user1.png" alt="">
+            <div class="content">
+              <h2>Comment as: </h2>
+              <input type="text" value="Anonymous" class="user">
+
+              <div class="commentinput">
+                <input type="text" placeholder="Enter comment" class="usercomment">
+                <div class="buttons">
+                    <button type="submit" disabled id="publish">Publish</button>
+                    <div class="notify">
+                        <input type="checkbox" class="notifyinput"> <span>Notify me</span>
+                    </div>
+                </div>
+              </div>
+            <p>This site is protected</p>
+          </div>
+        </div>
         </div>
         
 
