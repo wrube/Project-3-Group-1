@@ -17,5 +17,8 @@ tabs.forEach(tab => {
         if (tab.dataset.tabTarget === '#pricing') {
             map1.invalidateSize();
         }
+        if (tab.dataset.tabTarget === '#about') {
+            map2.invalidateSize();
+        }
     })
 })
