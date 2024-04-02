@@ -1,6 +1,8 @@
 let coo="Afghanistan"
 
 function init() {
+  // let initCountry = dropdownCooTab3.property("value");
+  // let initCOA3 = 
   let dec_closed = 0;
   let dec_other = 0;
   let dec_recognized = 0; 
@@ -11,7 +13,10 @@ function init() {
     let data = [{
       values: values,
       labels: pieLabels,
-      type: "pie"
+      type: "pie",
+      marker: {
+        colors: ['orange', 'grey', 'yellowgreen', 'red']
+      }
     }];
   
     let layout = {

@@ -3,42 +3,44 @@
 // Filter sample names based on country
 let sampleNames = decisions.filter(number => number.coa_iso == "AUS");
 
+
 // Function dropdown menu
-function dropdown_menu(){
-    let selector = d3.select("#selDataset");
+// function dropdown_menu(){
+//     let selector = d3.select("#selDataset");
     
-    let countries_list = []
+//     let countries_list = []
 
-    // Get country names from sampleNames
-    for (let i = 0; i < sampleNames.length; i++) {
-      countries_list.push(sampleNames[i]['coo_name'])
-    }
-//  console.log(countries_list)
+//     // Get country names from sampleNames
+//     for (let i = 0; i < sampleNames.length; i++) {
+//       countries_list.push(sampleNames[i]['coo_name'])
+//     }
  
-  // Remove duplicates from countries_list
-countries_list = (removeDuplicates(countries_list));
-console.log(countries_list)
+ 
+//   // Remove duplicates from countries_list
+// countries_list = (removeDuplicates(countries_list));
+// // console.log(countries_list)
 
-// Sort countries_list alphabetically
-countries_list = countries_list.sort()
-
-
-   // Append options to dropdown menu          
-    countries_list.forEach((sample) => {
-        selector
-            .append("option")
-            .text(sample)
-            .property("value", sample);
-    });
-
-   // Display line chart for the first country in the list
-    line_chart(countries_list[0])
+// // Sort countries_list alphabetically
+// countries_list = countries_list.sort()
 
 
-}
+//    // Append options to dropdown menu          
+//     countries_list.forEach((sample) => {
+//         selector
+//             .append("option")
+//             .text(sample)
+//             .property("value", sample);
+//     });
 
+//    // Display line chart for the first country in the list
+//    console.log(countryNames.coo[0])
+//     line_chart(countries_list[0])
+
+
+// }
+line_chart(countryNames.coo[0])
 // Call dropdown_menu function to populate dropdown menu
-dropdown_menu()
+// dropdown_menu()
 
 
 // Function for dropdown  change
@@ -59,13 +61,15 @@ function line_chart(x){
 
  // Filter sampleNames based on selected country
     let newArray = sampleNames.filter(number => number.coo_name == x);
-    console.log(newArray)
+
+    // console.log(newArray)
 
 
     let years_list = []
     let refugees_list = []
     let recognized_list = []
     let other_list = []
+    let closed_list = [];
     let rejected_list = []
     
 // Extract years and total refugees for the selected country
@@ -76,7 +80,7 @@ function line_chart(x){
     }
     // Remove duplicate years and sort
     let unique_years_list = (removeDuplicates(years_list));
-    console.log(unique_years_list)
+    // console.log(unique_years_list)
     unique_years_list.sort((a, b) => {
       return new Date(a) - new Date(b)
     })
@@ -88,6 +92,7 @@ function line_chart(x){
     let refugee_count = 0
     let recognized_count = 0
     let other_count = 0
+    let closed_count = 0;
     let rejected_count = 0 
     // console.log(newyearsArray)
 
@@ -95,17 +100,20 @@ function line_chart(x){
     for (let i = 0; i < newyearsArray.length; i++) {
       refugee_count += (newyearsArray[i]['dec_total'])
       recognized_count += (newyearsArray[i]['dec_recognized']) 
-      other_count += (newyearsArray[i]['dec_other']) 
+      other_count += (newyearsArray[i]['dec_other'])
+      closed_count += (newyearsArray[i]['dec_closed']);
       rejected_count += (newyearsArray[i]['dec_rejected'])
       
     }
     refugees_list.push(refugee_count)
     recognized_list.push(recognized_count) 
     other_list.push(other_count) 
+    closed_list.push(closed_count);
     rejected_list.push(rejected_count)
   });
+
  
-console.log
+console.log(unique_years_list);
 
 // Data for Plotly line chart
     var line_data = [
@@ -113,33 +121,55 @@ console.log
         x: unique_years_list,
         y: refugees_list,
         type: 'scatter',
-        name: 'Closed'
+        name: 'Total',
+        line: {
+          color: 'dodgerblue'
+        } 
         
+      },
+      {
+        x: unique_years_list,
+        y: closed_list,
+        type: 'scatter',
+        name: 'Closed',
+        line: {
+          color: 'orange'
+        } 
       },
       {
         x: unique_years_list,
         y: recognized_list,
         type: 'scatter',
-        name: 'Recognized'
+        name: 'Recognized',
+        line: {
+          color: 'yellowgreen'
+        } 
       },
       {
         x: unique_years_list,
         y: other_list,
         type: 'scatter',
-        name: 'Other'
+        name: 'Other',
+        line: {
+          color: 'grey'
+        } 
       },
       {
         x: unique_years_list,
         y: rejected_list,
         type: 'scatter',
-        name: 'Rejected'
+        name: 'Rejected',
+        line: {
+          color: 'red'
+        } 
       }
     ];
 
     var layout = {
       xaxis: {
         title: 'Year', 
-        type: 'category' 
+        // type: 'category',
+        range: [2007, 2023]
       },
       yaxis: {
         title: 'Number of Asylum Seeker Decisions'
