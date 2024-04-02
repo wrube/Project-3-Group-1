@@ -20,7 +20,7 @@ for(let j=0; j<1000;j++){
   el.value = decisions[j].coo_name;
   var select = document.getElementById("selDataset");
   select.appendChild(el);
-};
+  };
   
 d3.selectAll("#selDataset").on("change", getData); 
 function getData(){
