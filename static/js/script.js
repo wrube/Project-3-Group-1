@@ -62,8 +62,8 @@ function appendPostToPage(post) {
                 <h1>${post.name}</h1>
                 <p>${post.message}</p>
                 <div class="engagements">
-                    <img src="like.png">
-                    <img src="share.png">
+                    <img src="static/images/like.png">
+                    <img src="static/images/share.png">
                 </div>
                 <span class="date">${post.date}</span>
             </div>
@@ -86,10 +86,10 @@ function addPost() {
     userId.name = userName.value;
     if (userId.name === "Anonymous") {
         userId.identity = false;
-        userId.image = "anonymous.png";
+        userId.image = "static/images/anonymous.png";
     } else {
         userId.identity = true;
-        userId.image = "user.png";
+        userId.image = "static/images/user.png";
     }
 
     userId.message = userComment.value;

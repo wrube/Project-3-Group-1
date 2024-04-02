@@ -26,6 +26,23 @@ body {
   margin: 0;
 }
 
+.image-container {
+  margin-left: 20px; /* Adjust the margin as needed */
+  align-items: center;
+}
+
+.image-container img {
+  width: 400px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  
+}
+
+.writing-box img {
+  margin-left: auto; /* Move the image to the right */
+  margin-right: auto; /* Move the image to the left */
+  display: block; /* Ensure the image is centered */
+}
+
 .tabs {
   display: flex;
   justify-content: space-around;
@@ -104,6 +121,7 @@ body {
   padding: 20px;
   margin-bottom: 15px; /* Add some space between boxes */
   margin-top: 20px;
+  flex: 1;
 }
 
 /* Remove the default margin and padding from the body. */
@@ -112,6 +130,10 @@ body {
   margin: 0;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+}
 
 .legend {
   color: #555;
