@@ -10,6 +10,27 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""/>
+
+  <!-- Leaflet JavaScript code -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+  <!-- leaflet-choropleth JavaScript -->
+  <script type="text/javascript" src="static/js/choropleth.js"></script>
+ 
+  <!-- Leaflet active layers extension -->
+  <script type="text/javascript" src="static/src/ActiveLayers.js"></script>
+
+  <!-- Turf library to get centroids -->
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+  
+  <!-- Our CSS -->
   <link  type="text/css" href="static/css/style.css" rel="stylesheet">
 </head>
 
@@ -152,7 +173,7 @@
           <div class="col-md-2">
             <div class="card card-body bg-light">
               <h6>Select a country of origin (coo):</h6>
-              <select id="selDataset" onchange="optionChanged(this.value)"></select>
+              <select id="selCOOdropdown"></select>
             </div>  
           </div>
           
@@ -160,10 +181,10 @@
           <div class="col-md-10">
             <div class="row">
               <div class="col-md-6">
-                <div id="graph1" style="height: 200px;">insert graph 1</div>
+                <div id="graph1" style="height: 300px;"></div>
               </div>
               <div class="col-md-6">
-                <div id="graph2" style="height: 200px;">insert graph 2</div>
+                <div id="graph2" style="height: 300px;"></div>
               </div>
             </div>
             <div class="row">
@@ -215,13 +236,16 @@
           <div class="col-md-2">
             <div class="card card-body bg-light">
               <h6>Are you interested in a country's rate of asylum or origin?:</h6>
-              <select id="selDataset2" onchange="optionChanged(this.value)"></select>
+              <select id="selCountryType" name="Country Type">
+                <option value="coa">Country of Asylum</option>
+                <option value="coo">Country of Origin</option>
+              </select>
             </div>  
           </div>
           <div class="col-md-2">
             <div class="card card-body bg-light">
               <h6>Select your country of interest:</h6>
-              <select id="selDataset3" onchange="optionChanged(this.value)"></select>
+              <select id="selCountryOfInterest"></select>
             </div>  
           </div>
         </div>
@@ -263,9 +287,15 @@
     </div>
     
   </div>
- 
-
-
+  
+  <script type="text/javascript" src="data/asylum_decisions_2008-2023.js"></script>
+  <script type="text/javascript" src="data/countries.js"></script>
+  <script type="text/javascript" src="static/js/map-functions.js"></script>
+  <script type="text/javascript" src="static/js/populateDropdowns.js"></script>
+  <script type="text/javascript" src="static/js/app.js"></script>
+  <script type="text/javascript" src="static/js/pie_australia.js"></script>
+  <script type="text/javascript" src="static/js/map1.js"></script>
+  <script type="text/javascript" src="static/js/map2.js"></script>
 </body>
 
 </html>
