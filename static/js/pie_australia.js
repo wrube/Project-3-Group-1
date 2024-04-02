@@ -1,6 +1,13 @@
 let coo="Afghanistan"
 
 function init() {
+  let countryPie = dropdownCooTab3.property("value");
+  let countryISO3 = findKeyByValue(uniqueCOOs, countryPie);
+  let countryDec = filterByAttribute(sampleNames, false, countryISO3);
+
+
+  console.log(countryDec);
+
   let dec_closed = 0;
   let dec_other = 0;
   let dec_recognized = 0; 

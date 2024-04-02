@@ -17,7 +17,7 @@ function dropdown_menu(){
  
   // Remove duplicates from countries_list
 countries_list = (removeDuplicates(countries_list));
-console.log(countries_list)
+// console.log(countries_list)
 
 // Sort countries_list alphabetically
 countries_list = countries_list.sort()
@@ -59,7 +59,7 @@ function line_chart(x){
 
  // Filter sampleNames based on selected country
     let newArray = sampleNames.filter(number => number.coo_name == x);
-    console.log(newArray)
+    // console.log(newArray)
 
 
     let years_list = []
@@ -76,7 +76,7 @@ function line_chart(x){
     }
     // Remove duplicate years and sort
     let unique_years_list = (removeDuplicates(years_list));
-    console.log(unique_years_list)
+    // console.log(unique_years_list)
     unique_years_list.sort((a, b) => {
       return new Date(a) - new Date(b)
     })
