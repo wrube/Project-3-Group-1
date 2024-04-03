@@ -20,7 +20,6 @@ let baseMap2 = createBaseMap(map2);
 
 
 // create layers
-console.log(ISO3nameTab4, countryIsCoaMap2);
 let layersContainer2 = generateLayers(ISO3nameTab4, countryIsCoaMap2);
 let overlays2 = createOverlay(layersContainer2);
 
@@ -66,15 +65,18 @@ dropdownCountryTab4.on("change", function() {
     const countryType = dropdownCountryTypeTab4.property("value");
     const countryName = d3.select(this).property("value");  
     let ISO3;
+    let isCOA_map2 = true;
+    console.log(countryType);
     if (countryType === 'coo' ) {
         ISO3 = findKeyByValue(uniqueCOOs, countryName);
+        isCOA_map2 = false;
     }
     else {
         ISO3 = findKeyByValue(uniqueCOAs, countryName);
     }
 
     // setup new layers and control
-    layersContainer2 = generateLayers(ISO3, countryType);
+    layersContainer2 = generateLayers(ISO3, isCOA_map2);
     overlays2 = createOverlay(layersContainer2);
 
     layerControl2 = createLayerControl(baseMap2, overlays2);

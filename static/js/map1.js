@@ -45,6 +45,8 @@ map1.on('overlayadd', function () {
 countryCentroid = L.geoJSON(turf.centroid(initOutline_tab3));
 countryCentroid.addTo(map1);
 
+addCentroid(layersContainer1, initOutline_tab3);
+
 
 // have a listener object on the coo dropdown and update country outlines and markers
 dropdownCooTab3.on("change", function() {
@@ -78,3 +80,18 @@ dropdownCooTab3.on("change", function() {
     }
 );
 
+function addCentroid(layerContainer, countryOutline) {
+    for (const key in layerContainer) {
+        if (Object.hasOwnProperty.call(layerContainer, key)) {
+            const decisionData = layerContainer[key].layer;
+            let decisionArray = [];
+            decisionData.eachLayer(function(feature) {
+                // Access properties of each feature
+                let properties = feature.feature.properties;
+                decisionArray.push(properties)
+                
+            })
+            // console.log(decisionArray);
+        }
+    }
+}
