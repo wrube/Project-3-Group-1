@@ -44,7 +44,7 @@ map2.on('overlayadd', function () {
     });
 
 // calculate and display the country centroid
-let countryCentroidMap2 = L.geoJSON(turf.centroid(initOutline_tab4));
+let countryCentroidMap2 = addCentroid_map2(ISO3nameTab4, countryIsCoaMap2, initOutline_tab4)
 countryCentroidMap2.addTo(map2);
 
 // listen to the tab4 country dropdown
@@ -66,7 +66,6 @@ dropdownCountryTab4.on("change", function() {
     const countryName = d3.select(this).property("value");  
     let ISO3;
     let isCOA_map2 = true;
-    console.log(countryType);
     if (countryType === 'coo' ) {
         ISO3 = findKeyByValue(uniqueCOOs, countryName);
         isCOA_map2 = false;
@@ -83,7 +82,12 @@ dropdownCountryTab4.on("change", function() {
     layerControl2.addTo(map2);
     
     toggleLegends(layersContainer2, map2);
+
+    //set starting layer
+    layersContainer2.Recognised.layer.addTo(map2);
+    layersContainer2.Recognised.legend.addTo(map2);
     
+    // display country outline
     initOutline_tab4 = countryOutline(ISO3);
     countryDisplay_map2 = countryLayer(initOutline_tab4);
     countryDisplay_map2.addTo(map2);
@@ -94,7 +98,7 @@ dropdownCountryTab4.on("change", function() {
         });
 
     // calculate and display the country centroid
-    countryCentroidMap2 = L.geoJSON(turf.centroid(initOutline_tab4));
+    countryCentroidMap2 = countryCentroidMap2 = addCentroid_map2(ISO3, isCOA_map2, initOutline_tab4)
     countryCentroidMap2.addTo(map2);
 
 });

@@ -357,3 +357,57 @@ function updateMapOnChange(map, name) {
             centroid: marker};
 
     }
+
+    function addCentroid(COA, COO, countryOutline) {
+
+        let filteredDecisions = filterByAttribute(filterByAttribute(decisions, true, COA), false, COO);
+
+        let closed = sumDecision(filteredDecisions, 'dec_closed');
+        let recognised = sumDecision(filteredDecisions, 'dec_recognized');
+        let rejected = sumDecision(filteredDecisions, 'dec_rejected');
+        let other = sumDecision(filteredDecisions, 'dec_other');
+        let total = sumDecision(filteredDecisions, 'dec_total');
+    
+        let coords = turf.centroid(countryOutline);
+    
+        let marker = L.geoJSON(coords, {
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(`
+                            Recognised: ${recognised} <br>
+                            Other: ${other} <br>
+                            Rejected: ${rejected} <br>
+                            Closed: ${closed} <br>
+                            Total: ${total} 
+                            `)
+            }
+        })
+    
+        return marker;
+    }
+
+    function addCentroid_map2(countryISO3, isCOA, countryOutline) {
+
+        let filteredDecisions = filterByAttribute(decisions, isCOA, countryISO3);
+
+        let closed = sumDecision(filteredDecisions, 'dec_closed');
+        let recognised = sumDecision(filteredDecisions, 'dec_recognized');
+        let rejected = sumDecision(filteredDecisions, 'dec_rejected');
+        let other = sumDecision(filteredDecisions, 'dec_other');
+        let total = sumDecision(filteredDecisions, 'dec_total');
+    
+        let coords = turf.centroid(countryOutline);
+    
+        let marker = L.geoJSON(coords, {
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(`
+                            Recognised: ${recognised} <br>
+                            Other: ${other} <br>
+                            Rejected: ${rejected} <br>
+                            Closed: ${closed} <br>
+                            Total: ${total} 
+                            `)
+            }
+        })
+    
+        return marker;
+    }
