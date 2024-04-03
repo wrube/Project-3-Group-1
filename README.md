@@ -1,5 +1,8 @@
 # Project-3-Group-1
 
+## Deployed website
+Please click [here](https://wrube.github.io/Project-3-Group-1/) to interact with the website.
+
 ## Source
 - UN [Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
 
