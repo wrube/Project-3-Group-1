@@ -12,10 +12,11 @@ const ISO3nameTab4 = findKeyByValue(countryNames[countryTab4], countryTab4);
 
 // create basemap
 let baseMap2 = createBaseMap(map2);
-// baseMap.addTo(map);
+
 
 // create layers
-let layersContainer2 = generateLayers(countryTab4, true);
+console.log(ISO3nameTab4);
+let layersContainer2 = generateLayers(countryTab4, countryIsCoaMap2);
 let overlays2 = createOverlay(layersContainer2);
 
 
