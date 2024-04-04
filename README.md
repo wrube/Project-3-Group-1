@@ -23,6 +23,11 @@ A website to allow users to interactively understand and analyse:
 
 ## Instructions on how to use and interact with the project
 
+### How to Interact with the website
+
+![How to part 1](./static/images/How2_1.png)
+
+![How to part 1](./static/images/How2_2.png)
 
 ### Generate the datasets
 
