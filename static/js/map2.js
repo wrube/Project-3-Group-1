@@ -49,7 +49,7 @@ countryCentroidMap2.addTo(map2);
 
 // calculate top5 countries
 let top5 = top5_map2(ISO3nameTab4, countryIsCoaMap2);
-plotTop5(top5, uniqueCountryNames);
+plotTop5(top5, uniqueCountryNames, countryTab4);
 
 // listen to the tab4 country dropdown
 dropdownCountryTab4.on("change", function() {
@@ -106,6 +106,6 @@ dropdownCountryTab4.on("change", function() {
     countryCentroidMap2.addTo(map2);
 
     top5 = top5_map2(ISO3, isCOA_map2);
-    plotTop5(top5, uniqueCountryNames);
+    plotTop5(top5, uniqueCountryNames, countryName);
 
 });
