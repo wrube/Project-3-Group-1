@@ -76,7 +76,7 @@ body {
 }
 
 #map1 {
-  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  border: 2px solid rgb(0, 255, 38); /* Adjust width, style, and color as desired */
   margin-top: 20px;
   /* height: 100%; */
   overflow: hidden;
@@ -97,18 +97,18 @@ body {
 }
 
 #map2 {
-  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  border: 2px solid rgb(0, 255, 38); /* Adjust width, style, and color as desired */
   margin-top: 20px;
 }
 
 
 #graph1 {
-  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  border: 2px solid rgb(0, 255, 38); /* Adjust width, style, and color as desired */
   margin-top: 20px;
 }
 
 #graph2 {
-  border: 2px solid blue; /* Adjust width, style, and color as desired */
+  border: 2px solid rgb(0, 255, 38); /* Adjust width, style, and color as desired */
   margin-top: 20px;
 }
 

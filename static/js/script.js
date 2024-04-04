@@ -17,6 +17,7 @@ tabs.forEach(tab => {
         if (tab.dataset.tabTarget === '#pricing') {
             map1.invalidateSize();
         }
+        
         if (tab.dataset.tabTarget === '#about') {
             map2.invalidateSize();
         }
@@ -119,3 +120,11 @@ function addPost() {
 displayCommentsFromLocalStorage();
 
 publishBtn.addEventListener("click", addPost);
+
+// // Function to wipe local storage
+// function wipeLocalStorage() {
+//     localStorage.removeItem("comments");
+// }
+
+// // Call the wipeLocalStorage function once
+// wipeLocalStorage();
