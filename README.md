@@ -55,7 +55,7 @@ html product with a map and a couple of graphs
 Country of asylum -> dropdown
 Country of origin -> html
 
-## Legal considerations made in this project (check if powerpoint would suffice)
+## Legal considerations made in this project
 The source of the data, UNHCR, has outlined that this dataset is licensed under a Creative Commons 4.0. To comply with UNHCR's terms of use, the following has been applied either statically or continually:
 - When presenting information, a link to the terms of use shall be present: <https://www.unhcr.org/terms-use-datasets>
 - Similarly, accreditation of the original datasource will be shared under the following title: 'UNHCR Refugee Population Statistics Database'
