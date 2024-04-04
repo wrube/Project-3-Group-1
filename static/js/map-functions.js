@@ -452,7 +452,7 @@ function updateMapOnChange(map, name) {
 
     }
 
-    function plotTop5(input, countryKey) {
+    function plotTop5(input, countryKey, countryOfInterest) {
 
         let countries = [];
         let recognised = [];
@@ -507,7 +507,7 @@ function updateMapOnChange(map, name) {
         console.log(countries,recognised)
 
         Plotly.newPlot('top5', [traceRecognised, traceRejected, traceOther, traceClosed], {
-            title: 'Top 5 Countries By Total Decisions 2008-2023',
+            title: `Top 5 countries that received the most <br> applications from ${countryOfInterest} 2008-2023`,
             barmode: 'stack'
             }
         );
