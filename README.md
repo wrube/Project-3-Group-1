@@ -3,13 +3,6 @@
 ## Deployed website
 Please click [here](https://wrube.github.io/Project-3-Group-1/) to interact with the website.
 
-## Source
-- UN [Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
-
-  - Definitions for data
-https://www.unhcr.org/refugee-statistics/methodology/data-content/
-
-- Country borders with ISO names from [https://github.com/datasets/geo-countries](https://github.com/datasets/geo-countries) which is a GeoJSON converted dataset sourced from [Natural Earth](https://www.naturalearthdata.com/).
 
 ## Proposal
 
@@ -86,6 +79,29 @@ Before publishing any statistics on the refugee statistics website, UNHCR applie
 
 Data between tables remains additive therefore the totals should be considered approximations.
 
-References for the data source(s)
+## References
+- UN [Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
+
+  - Definitions for data
+https://www.unhcr.org/refugee-statistics/methodology/data-content/
+
+- Country borders with ISO names from [https://github.com/datasets/geo-countries](https://github.com/datasets/geo-countries) which is a GeoJSON converted dataset sourced from [Natural Earth](https://www.naturalearthdata.com/).
+
+- https://stackoverflow.com/questions/43121679/how-to-append-option-into-select-combo-box-in-d3
+- https://blog.debugeverything.com/how-to-use-arrow-functions-with-javascript-filter/
+- https://masteringjs.io/tutorials/fundamentals/foreach-object
+- https://plotly.com/javascript/bubble-charts/
+- https://plotly.com/javascript/time-series/
+- https://www.youtube.com/watch?v=5L6h_MrNvsk 
+- https://www.youtube.com/watch?v=drkpDLy92uA
+
+  
+![image](https://github.com/wrube/Project-3-Group-1/assets/150848381/da8a3765-f137-4d3b-812f-2651a5ddbe2c)
+
+
+
+
+
+
 
 References for any code used that is not your own
