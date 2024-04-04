@@ -47,6 +47,10 @@ map2.on('overlayadd', function () {
 let countryCentroidMap2 = addCentroid_map2(ISO3nameTab4, countryIsCoaMap2, initOutline_tab4)
 countryCentroidMap2.addTo(map2);
 
+// calculate top5 countries
+let top5 = top5_map2(ISO3nameTab4, countryIsCoaMap2);
+plotTop5(top5, uniqueCountryNames);
+
 // listen to the tab4 country dropdown
 dropdownCountryTab4.on("change", function() {
     // clear previous map
@@ -100,5 +104,8 @@ dropdownCountryTab4.on("change", function() {
     // calculate and display the country centroid
     countryCentroidMap2 = countryCentroidMap2 = addCentroid_map2(ISO3, isCOA_map2, initOutline_tab4)
     countryCentroidMap2.addTo(map2);
+
+    top5 = top5_map2(ISO3, isCOA_map2);
+    plotTop5(top5, uniqueCountryNames);
 
 });

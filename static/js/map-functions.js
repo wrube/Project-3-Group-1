@@ -411,3 +411,104 @@ function updateMapOnChange(map, name) {
     
         return marker;
     }
+
+    function top5_map2(countryISO3, isCOA) {
+        let countryTypeKey = 'coa_iso';
+        if (isCOA) {
+            countryTypeKey = 'coo_iso'
+        }
+
+        let filteredDecisions = filterByAttribute(decisions, isCOA, countryISO3);
+        let countryBucket = {};
+        filteredDecisions.forEach(decision => {
+            if (!countryBucket.hasOwnProperty(decision[countryTypeKey])) {
+                countryBucket[decision[countryTypeKey]] = {
+                    recognised: decision['dec_recognized'],
+                    total: decision['dec_total'],
+                    rejected: decision['dec_rejected'],
+                    other: decision['dec_other'],
+                    closed: decision['dec_closed']
+
+                }
+            } 
+            else {
+                countryBucket[decision[countryTypeKey]]['recognised']+= decision['dec_recognized']
+                countryBucket[decision[countryTypeKey]]['total'] += decision['dec_total']
+                countryBucket[decision[countryTypeKey]]['rejected']+= decision['dec_rejected']
+                countryBucket[decision[countryTypeKey]]['other'] += decision['dec_other']
+                countryBucket[decision[countryTypeKey]]['closed'] += decision['dec_closed']
+            }
+            
+        });
+        // Convert the object into an array of key-value pairs
+        const dataArray = Object.entries(countryBucket);
+
+        // Sort the array based on the 'total' property of the nested objects
+        const top5 = dataArray.sort((a, b) => b[1].total - a[1].total).slice(0,5);
+
+        // Convert the sorted array back to an object
+        // const top5 = Object.fromEntries(dataArray);
+        return top5;
+
+    }
+
+    function plotTop5(input, countryKey) {
+
+        let countries = [];
+        let recognised = [];
+        let rejected = [];
+        let other = [];
+        let closed = [];
+    
+        // Process input data
+        input.forEach(country => {
+            let countryID = country[0];
+            let data = country[1];
+
+            countries.push(countryKey[countryID]);
+            recognised.push(data['recognised']);
+            rejected.push(data['rejected']);
+            other.push(data['other']);
+            closed.push(data['closed']);
+            
+        });
+
+        const traceRecognised = {
+          x: countries,
+          y: recognised,
+          name: 'Recognised',
+          type: 'bar',
+          marker: { color: 'yellowgreen' }
+        };
+    
+        const traceRejected = {
+          x: countries,
+          y: rejected,
+          name: 'Rejected',
+          type: 'bar',
+          marker: { color: 'red' }
+        };
+    
+        const traceOther = {
+          x: countries,
+          y: other,
+          name: 'Other',
+          type: 'bar',
+          marker: { color: 'grey' }
+        };
+    
+        const traceClosed = {
+          x: countries,
+          y: closed,
+          name: 'Closed',
+          type: 'bar',
+          marker: { color: 'orange' }
+        };
+        console.log(countries,recognised)
+
+        Plotly.newPlot('top5', [traceRecognised, traceRejected, traceOther, traceClosed], {
+            title: 'Top 5 Countries By Total Decisions 2008-2023',
+            barmode: 'stack'
+            }
+        );
+}
