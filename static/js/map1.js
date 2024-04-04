@@ -17,8 +17,8 @@ let layersContainer1 = generateLayers(countryOfInterest, true);
 let overlays1 = createOverlay(layersContainer1);
 
 //set starting layer
-layersContainer1.Recognised.layer.addTo(map1);
-layersContainer1.Recognised.legend.addTo(map1);
+layersContainer1.Total.layer.addTo(map1);
+layersContainer1.Total.legend.addTo(map1);
 
 // create legend control
 let layerControl1 = createLayerControl(baseMap1, overlays1);
@@ -45,8 +45,6 @@ map1.on('overlayadd', function () {
 // countryCentroid = L.geoJSON(turf.centroid(initOutline_tab3));
 countryCentroid = addCentroid(countryOfInterest, initISO3name_tab3, initOutline_tab3);
 countryCentroid.addTo(map1);
-
-
 
 
 // have a listener object on the coo dropdown and update country outlines and markers
