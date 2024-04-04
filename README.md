@@ -3,13 +3,6 @@
 ## Deployed website
 Please click [here](https://wrube.github.io/Project-3-Group-1/) to interact with the website.
 
-## Source
-- UN [Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
-
-  - Definitions for data
-https://www.unhcr.org/refugee-statistics/methodology/data-content/
-
-- Country borders with ISO names from [https://github.com/datasets/geo-countries](https://github.com/datasets/geo-countries) which is a GeoJSON converted dataset sourced from [Natural Earth](https://www.naturalearthdata.com/).
 
 ## Proposal
 
@@ -55,7 +48,7 @@ html product with a map and a couple of graphs
 Country of asylum -> dropdown
 Country of origin -> html
 
-## Legal considerations made in this project (check if powerpoint would suffice)
+## Legal considerations made in this project
 The source of the data, UNHCR, has outlined that this dataset is licensed under a Creative Commons 4.0. To comply with UNHCR's terms of use, the following has been applied either statically or continually:
 - When presenting information, a link to the terms of use shall be present: <https://www.unhcr.org/terms-use-datasets>
 - Similarly, accreditation of the original datasource will be shared under the following title: 'UNHCR Refugee Population Statistics Database'
@@ -86,6 +79,25 @@ Before publishing any statistics on the refugee statistics website, UNHCR applie
 
 Data between tables remains additive therefore the totals should be considered approximations.
 
-References for the data source(s)
+## References
+- UN [Refugee Statistics](https://api.unhcr.org/docs/refugee-statistics.html#api-Default-countries)
 
-References for any code used that is not your own
+  - Definitions for data
+https://www.unhcr.org/refugee-statistics/methodology/data-content/
+
+- Country borders with ISO names from [https://github.com/datasets/geo-countries](https://github.com/datasets/geo-countries) which is a GeoJSON converted dataset sourced from [Natural Earth](https://www.naturalearthdata.com/).
+
+- https://stackoverflow.com/questions/43121679/how-to-append-option-into-select-combo-box-in-d3
+- https://blog.debugeverything.com/how-to-use-arrow-functions-with-javascript-filter/
+- https://masteringjs.io/tutorials/fundamentals/foreach-object
+- https://plotly.com/javascript/bubble-charts/
+- https://plotly.com/javascript/time-series/
+- https://www.youtube.com/watch?v=5L6h_MrNvsk 
+- https://www.youtube.com/watch?v=drkpDLy92uA
+
+  
+
+
+
+
+
