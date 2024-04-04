@@ -23,7 +23,7 @@ function removeDuplicates(arr) {
 }
 
 // Function to generate line chart for a specific country
-function line_chart(x){
+function line_chart(x, width, height){
 
  // Filter sampleNames based on selected country
     let newArray = sampleNames.filter(number => number.coo_name == x);
@@ -126,6 +126,7 @@ function line_chart(x){
           color: 'red'
         } 
       }
+      
     ];
 
     var layout = {
@@ -136,7 +137,9 @@ function line_chart(x){
       },
       yaxis: {
         title: 'Number of Asylum Seeker Decisions'
-      }
+      },
+      width: 520, // Set the width
+      height: 300 // Set the height
     };
 
    // Generate graph1
