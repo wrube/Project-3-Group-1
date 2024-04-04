@@ -25,8 +25,8 @@ let overlays2 = createOverlay(layersContainer2);
 
 
 //set starting layer
-layersContainer2.Recognised.layer.addTo(map2);
-layersContainer2.Recognised.legend.addTo(map2);
+layersContainer2.Total.layer.addTo(map2);
+layersContainer2.Total.legend.addTo(map2);
 
 // create legend control
 let layerControl2 = createLayerControl(baseMap2, overlays2);
@@ -88,8 +88,8 @@ dropdownCountryTab4.on("change", function() {
     toggleLegends(layersContainer2, map2);
 
     //set starting layer
-    layersContainer2.Recognised.layer.addTo(map2);
-    layersContainer2.Recognised.legend.addTo(map2);
+    layersContainer2.Total.layer.addTo(map2);
+    layersContainer2.Total.legend.addTo(map2);
     
     // display country outline
     initOutline_tab4 = countryOutline(ISO3);
